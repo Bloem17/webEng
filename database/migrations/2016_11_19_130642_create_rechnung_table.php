@@ -16,17 +16,18 @@ class CreateRechnungTable extends Migration
         Schema::create('rechnung', function (Blueprint $table) {
             
             $table->increments('id');
-            $table->string('rechnung-nr');
+            $table->string('rechnungsNr');
             $table->integer('betrag');
             $table->string('rechnungstyp');
+            $table->integer('reise_id')->length(10)->unsigned();
             $table->timestamps();
-            $table->integer('id_event')->length(10)->unsigned();
+            
            
         });
 
         Schema::table('rechnung', function(Blueprint $table) {
 
-            $table->foreign('id_event')->references('id')->on('event')->onDelete('cascade');
+            $table->foreign('reise_id')->references('id')->on('event')->onDelete('cascade');
 
         });
 

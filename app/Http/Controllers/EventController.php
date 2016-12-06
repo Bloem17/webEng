@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Reise;
+use \App\Models\Reise;
+use \App\Models\Rechnung;
 use View;
 
 
@@ -27,8 +28,9 @@ class EventController extends Controller {
 
     	$reise->titel = $request->titel;
     	$reise->dauer = $request->select;
-    	$kurzbeschrieb = "";
+        $kurzbeschrieb = '';
 
+        
     	for ($i=1; $i <= 7; $i++ ){
     		$check = 'tag' . $i;
     		if (!empty($request->$check)){
@@ -36,7 +38,16 @@ class EventController extends Controller {
     		}
     	}
 
-    	$reise->kurzbeschrieb = $kurzbeschrieb;
+        for ($i=1; $i <= 7; $i++ ){
+            $check = 'tag' . $i;
+            if (!empty($request->$check)){
+
+                $reise->$check = $request->$check;
+
+            }
+        }
+
+        $reise->kurzbeschrieb = $kurzbeschrieb;
 		$reise->preis = $request->preis;
 		$reise->status = true;
 
@@ -52,7 +63,9 @@ class EventController extends Controller {
     }
 
 
-    public function show (){
+    public function show (Reise $reise){
+
+        return View::make('event.show')->with('event', $reise);
 
     }
 

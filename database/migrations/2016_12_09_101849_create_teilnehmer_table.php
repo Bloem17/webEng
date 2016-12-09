@@ -14,14 +14,23 @@ class CreateTeilnehmerTable extends Migration
     public function up()
     {
         Schema::create('teilnehmer', function (Blueprint $table) {
+            //
             $table->increments('id');
             $table->string('vorname');
             $table->string('nachname');
             $table->string('strasse');
-            $table->integer('str-nr');
+            $table->integer('strNr');
             $table->integer('plz');
             $table->string('ort');
+            $table->integer('reise_id')->length(10)->unsigned();
+            
             $table->timestamps();
+        });
+
+        Schema::table('teilnehmer', function(Blueprint $table) {
+
+            $table->foreign('reise_id')->references('id')->on('event')->onDelete('cascade');
+
         });
     }
 
@@ -32,6 +41,8 @@ class CreateTeilnehmerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teilnehmer');
+        Schema::table('teilnehmer', function (Blueprint $table) {
+            //
+        });
     }
 }

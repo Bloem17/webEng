@@ -15,9 +15,9 @@ class EventController extends Controller {
 
 	public function index(){
 
-		$events = Reise::all();
+		$events = Reise::all();//Select * from event;
 
-		return View::make('event.index')->with('events', $events);
+		return View::make('event.home')->with('events', $events);
 
 
 	}
@@ -50,6 +50,7 @@ class EventController extends Controller {
         $reise->kurzbeschrieb = $kurzbeschrieb;
 		$reise->preis = $request->preis;
 		$reise->status = true;
+        $reise->datum = $request->datum;
 
 		$reise->save();
 		return redirect()->to('/');
@@ -64,6 +65,7 @@ class EventController extends Controller {
 
 
     public function show (Reise $reise){
+
 
         return View::make('event.show')->with('event', $reise);
 

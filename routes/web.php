@@ -23,5 +23,7 @@ Route::get('event/{reise}/rechnung' , 'RechnungController@create')->name('route2
 
 Route::post('event/{reise}/rechnung/store', 'RechnungController@store');
 
-Route::get('teilnehmer/create' , 'TeilnehmerController@create');
+Route::get('event/{reise}/teilnehmer' , 'TeilnehmerController@create')->name('route3');
+
+Route::post('event/{reise}/teilnehmer/store', 'TeilnehmerController@store');
 

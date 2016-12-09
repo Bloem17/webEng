@@ -14,6 +14,7 @@
         <li><a href="{{ URL::to('/') }}">View All Events</a></li>
         <li><a href="{{ URL::to('event/create') }}">Create a Event</a>
         <li><a href="{{ URL::to('teilnehmer/create') }}">Teilnehmer hinuzfügen</a>
+        <li><a href="{{ URL::to('teilnehmer/create') }}">Test hinuzfügen</a>
     </ul>
 </nav>
 

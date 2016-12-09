@@ -7,7 +7,15 @@
 </head>
 <body onload="hide()">
 
-@include ('static.navigation')
+<header>
+
+@include ('static.nan')
+
+</header>
+
+<section class="container">
+      
+        <article class="jumbotrons">
 
 <h1>Rechnung erfassen</h1>
 
@@ -60,10 +68,11 @@
 		<button type='submit' class='btn btn-primary'>Add Rechnung</button>
 	</div>
 
-
-	
-
 </form>
+
+</article>
+
+</section>
 
 <script type="text/javascript">
  

@@ -27,3 +27,5 @@ Route::get('event/{reise}/teilnehmer' , 'TeilnehmerController@create')->name('ro
 
 Route::post('event/{reise}/teilnehmer/store', 'TeilnehmerController@store');
 
+Route::get('event/{reise}/rechnung/schlussrechnung', 'RechnungController@abrechnung')->name('abrechnung');
+

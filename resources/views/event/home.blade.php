@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link href="/css/app.css" rel="stylesheet">
         <title>Home</title>
     </head>
     <body>
@@ -30,7 +31,7 @@ and open the template in the editor.
             
             <h1>All the Events</h1>
 
-              <table class="table table-striped table-bordered">
+              <table id="table" class="table table-striped table-bordered" >
 
                 <thead>
                     <tr >
@@ -41,13 +42,14 @@ and open the template in the editor.
                         <td>Dauer</td>
                         <td>Status</td>
                         <td>Datum</td>
+                          
                         
                     </tr>
                 </thead>
 
                 @foreach ($events as $events)
-                  <tbody>
-                    <tr onclick='test({{ $events->id }})'>
+                  <tbody >
+                    <tr onclick='test({{ $events->id }}, this)'>
                       <td>{{ $events->id }}</td>
                       <td>{{ $events->preis }}</td>
                       <td>{{ $events->kurzbeschrieb }}</td>
@@ -55,10 +57,19 @@ and open the template in the editor.
                       <td>{{ $events->dauer }}</td>
                       <td>{{ $events->status }}</td>
                       <td>{{ $events->datum }}</td>
+                      
                     </tr>
                   </tbody>
                 @endforeach
               </table>
+
+              <div class="col-sm-2"> 
+                <button class='btn btn-primary' id="1" onclick="load(this.id)">Rechnung hinzufuegen</button>
+             </div>
+
+            <div class="col-sm-2">
+              <button class='btn btn-primary' id="2" onclick="load(this.id)">Details</button>
+            </div>
 
         </article>
       </center>
@@ -71,14 +82,61 @@ and open the template in the editor.
 
 <script type="text/javascript">
 
-function test(id){
+  var selectedId = "";
+  var bla = "";
 
-  var url = '{{(route("myRoute", ":id"))}}'
-  url = url.replace(':id', id);
+  function test(id, element){
 
-  window.location.href = url;
+    var selected = "";
 
-}
+    var testen = document.getElementById("table").getElementsByTagName("tr");
+    for(var x = 0; x < testen.length; x++) {
+
+      testen[x].className = "";
+
+    }
+
+
+    if(element.className == "hovered"){
+      selected = true;
+    }else{
+      selected = false;
+    }
+
+    element.className="";
+    if(!selected){
+      element.className = "hovered";
+    }
+
+    window.bla = element.className;
+    window.selectedId = id;
+
+  } 
+
+  function load(btnId){
+
+
+    if(btnId == 1 ){
+
+      var url = '{{(route("abrechnung", ":id"))}}'
+      url = url.replace(':id', selectedId);
+      window.location.href = url;
+
+    }else if(btnId == 2){
+
+      if(bla == 'hovered'){
+
+        var url = '{{(route("myRoute", ":id"))}}'
+        url = url.replace(':id', selectedId);
+        window.location.href = url;
+      
+      }
+    } 
+  }
+
+ 
+
+
 
 </script>
     </body>

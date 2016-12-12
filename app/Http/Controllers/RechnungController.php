@@ -35,5 +35,20 @@ class RechnungController extends Controller
 
     }
 
+    public function abrechnung(Reise $reise){
+
+
+        $gesamtbetrag = 0;
+
+        foreach ($reise->rechnung as $rechnung){
+
+            $gesamtbetrag += $rechnung->betrag;
+
+        }
+
+        return $gesamtbetrag;
+
+    }
+
 
 }

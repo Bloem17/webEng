@@ -6,21 +6,34 @@ use Illuminate\Http\Request;
 use \App\Models\Reise;
 use \App\Models\Rechnung;
 use View;
+use Auth;
 
 
 class EventController extends Controller {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 
     //
 
 	public function index(){
 
-		$events = Reise::all();//Select * from event;
-
-		return View::make('event.home')->with('events', $events);
-
+        if (Auth::check()){
+            return View::make('event.home');
+        }
 
 	}
+
+    public function events(){
+        $events = Reise::all();//Select * from event;
+
+        if (Auth::check()){
+            return View::make('event.events')->with('events', $events);
+        }
+    }
 
     public function store(Request $request){
 
@@ -53,7 +66,7 @@ class EventController extends Controller {
         $reise->datum = $request->datum;
 
 		$reise->save();
-		return redirect()->to('/');
+		return redirect()->to('/events');
 
     }
 

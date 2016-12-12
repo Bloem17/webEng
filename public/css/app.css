@@ -18,6 +18,10 @@
 
 }
 
+.test{
+	color: red;
+}
+
 
 .test2{
     width:30px;
@@ -28,12 +32,9 @@
 }
 
 .hovered td {
-    background: lightgrey;
+	background-color: #FFEFC6;
+	color: red;
 }
 
-tbody tr:hover.selected td,
-tbody tr:hover td {
-  background-color: #FFEFC6;
-  cursor: pointer;
-}
+
 

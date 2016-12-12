@@ -41,8 +41,10 @@ class CreateTeilnehmerTable extends Migration
      */
     public function down()
     {
-        Schema::table('teilnehmer', function (Blueprint $table) {
-            //
-        });
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::drop('teilnehmer');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+    
     }
 }

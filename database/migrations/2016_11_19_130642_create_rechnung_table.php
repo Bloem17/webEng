@@ -40,6 +40,8 @@ class CreateRechnungTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rechnung');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::drop('rechnung');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

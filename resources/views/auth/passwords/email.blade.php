@@ -1,7 +1,12 @@
-@extends('layouts.app')
-
-<!-- Main Content -->
-@section('content')
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<header>
+@include ('static.nav')
+</header>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -44,4 +49,8 @@
         </div>
     </div>
 </div>
-@endsection
+
+
+
+</body>
+</html>

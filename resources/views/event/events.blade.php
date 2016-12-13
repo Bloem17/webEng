@@ -2,15 +2,25 @@
 <html>
 <head>
 	<title></title>
-
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 <header>
-	 @include ('static.nan')
+	 @include ('static.nav')
 </header>
 <section class="container">
 	<center>
 		<h1>All the Events</h1>
+	</center>
+	<section class ="container">
+		<p>
+			<button class='btn btn-primary' id="1" onclick="load(this.id)">Rechnung hinzufuegen</button>
+			<button class='btn btn-primary' id="2" onclick="load(this.id)">Details</button>
+		</p>
+	</section>
+	<center>
 
 		<table id="table" class="table table-striped table-bordered" >
 
@@ -28,35 +38,35 @@
 		    </tr>
 		</thead>
 
-		@foreach ($events as $events)
+		@foreach ($events->all() as $event)
 		  <tbody >
-		    <tr onclick='test({{ $events->id }}, this)'>
-		      <td>{{ $events->id }}</td>
-		      <td>{{ $events->preis }}</td>
-		      <td>{{ $events->kurzbeschrieb }}</td>
-		      <td>{{ $events->titel }}</td>
-		      <td>{{ $events->dauer }}</td>
-		      <td>{{ $events->status }}</td>
-		      <td>{{ $events->datum }}</td>
+		    <tr onclick='test({{ $event->id }}, this)'>
+		      <td>{{ $event->id }}</td>
+		      <td>{{ $event->preis }}</td>
+		      <td>{{ $event->kurzbeschrieb }}</td>
+		      <td>{{ $event->titel }}</td>
+		      <td>{{ $event->dauer }}</td>
+		      <td>{{ $event->status }}</td>
+		      <td>{{ $event->datum }}</td>
 		      
 		    </tr>
 		  </tbody>
 		@endforeach
 		</table>
 
-		<div class="col-sm-2"> 
-			<button class='btn btn-primary' id="1" onclick="load(this.id)">Rechnung hinzufuegen</button>
-		</div>
+		<section class ="container">
+			{{ $events->render() }}
+		</section>
 
-		<div class="col-sm-2">
-			<button class='btn btn-primary' id="2" onclick="load(this.id)">Details</button>
-		</div>
+	
+
 	</center>
 </section>
 
 
-</body>
 <script type="text/javascript">
+
+	
 
   var selectedId = "";
   var bla = "";
@@ -91,23 +101,32 @@
 
   function load(btnId){
 
+  	if(selectedId != ""){
 
-    if(btnId == 1 ){
+		if(btnId == 1 ){
 
-      var url = '{{(route("abrechnung", ":id"))}}'
-      url = url.replace(':id', selectedId);
-      window.location.href = url;
+			var url = '{{(route("abrechnung", ":id"))}}'
+			url = url.replace(':id', selectedId);
+			window.location.href = url;
 
-    }else if(btnId == 2){
+	    }else if(btnId == 2){
 
-      if(bla == 'hovered'){
+			if(bla == 'hovered'){
 
-        var url = '{{(route("myRoute", ":id"))}}'
-        url = url.replace(':id', selectedId);
-        window.location.href = url;
-      
-      }
-    } 
+			    var url = '{{(route("myRoute", ":id"))}}'
+			    url = url.replace(':id', selectedId);
+			    window.location.href = url;
+	      
+      		}
+	    } 
+  	}else{
+  		swal({
+			title: "Bitte wählen sie einen Event aus!",
+			text: "",
+			type: "error",
+			confirmButtonText: "Ok"
+	});
+  	}  
   }
 
 </script>
@@ -115,5 +134,9 @@
 
 
 </script>
+
+
+</body>
+
 
 </html>

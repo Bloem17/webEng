@@ -32,8 +32,14 @@
 }
 
 .hovered td {
-	background-color: #FFEFC6;
+	background-color: #00ff00;
 	color: red;
+}
+
+table tbody tr:hover.selected td,
+table tbody tr:hover td{
+	background-color: #FFEFC6;
+	cursor: pointer;
 }
 
 

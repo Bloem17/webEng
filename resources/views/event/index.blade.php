@@ -6,7 +6,7 @@
 </head>
 <body>
 
-	@include ('static.navigation')
+	@include ('static.nav')
 
 	<h1>All the Events</h1>
 

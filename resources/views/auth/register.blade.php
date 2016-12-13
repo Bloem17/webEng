@@ -1,6 +1,14 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
 
-@section('content')
+<header>
+@include ('static.nav')
+</header>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -59,6 +67,16 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="isAdmin" value="true"> Admin
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -73,4 +91,8 @@
         </div>
     </div>
 </div>
-@endsection
+
+
+
+</body>
+</html>

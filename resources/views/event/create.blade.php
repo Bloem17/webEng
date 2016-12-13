@@ -9,7 +9,7 @@
 
 	<header>
 
-    @include ('static.nan')
+    @include ('static.nav')
        
    </header>
 
@@ -17,7 +17,7 @@
 		<h1>Event erfassen</h1>
 
 
-		<form method='post' action='/event/store' >
+		<form method='post' action='/event/store' id="req">
 
 			<!-- 
 				{{csrf_field()}} generate a token field which is send with the HTML request to validate it
@@ -121,7 +121,7 @@
 
 
 			<div class="form-group">
-				<button type='submit' class='btn btn-primary'>Add Event</button>
+				<button id="addBtn" type='submit' class='btn btn-primary'>Add Event</button>
 			</div>
 
 
@@ -132,6 +132,14 @@
 	</section>
 
 <script type="text/javascript">
+
+
+document.getElementById("addBtn").onclick = function(){
+	document.getElementById("addBtn").disabled = true;
+	document.getElementById("req").submit();
+	
+}
+
  
 
 function hide(){

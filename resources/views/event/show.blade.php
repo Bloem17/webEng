@@ -9,7 +9,7 @@
 
 <header>
 
-    @include ('static.nan')
+    @include ('static.nav')
        
 </header>
 

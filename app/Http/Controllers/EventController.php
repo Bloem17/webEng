@@ -28,7 +28,7 @@ class EventController extends Controller {
 	}
 
     public function events(){
-        $events = Reise::all();//Select * from event;
+        $events = Reise::paginate(10);
 
         if (Auth::check()){
             return View::make('event.events')->with('events', $events);

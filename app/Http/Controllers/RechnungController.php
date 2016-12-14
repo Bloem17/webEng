@@ -44,13 +44,18 @@ class RechnungController extends Controller
 
         $gesamtbetrag = 0;
 
+        $teilnehmer = $reise->teilnehmer()->count();
+        $presi = $reise->preis;
+
+        $betrag = $presi * $teilnehmer;
+
         foreach ($reise->rechnung as $rechnung){
 
             $gesamtbetrag += $rechnung->betrag;
 
         }
 
-        return $gesamtbetrag;
+       return 
 
     }
 

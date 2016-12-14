@@ -3,7 +3,6 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
 </head>
 <body onload="hide()">
 
@@ -36,7 +35,7 @@
 		 	 		<label for="" class="col-sm-1 col-form-label">Dauer</label>
 		 	 		<div class="col-sm-10">
 			 	 		<select class="custom-select" id='tage_select' onchange="changetextbox()" name="select">
-						  <option selected>Dauer der Reise bestimmen!</option>
+						  <option value ="" selected>Dauer der Reise bestimmen!</option>
 						  <option value="3">3</option>
 						  <option value="4">4</option>
 						  <option value="5">5</option>
@@ -121,10 +120,19 @@
 		     	 </div>
 		    </div>
 
-
 			<div class="form-group">
 				<button id="addBtn" type='submit' class='btn btn-primary'>Add Event</button>
 			</div>
+
+			@if ($errors->any())
+
+				<ul class="alert alert-danger">
+
+					@foreach ($errors->all() as $error)
+					<li>{{$error}}</li>
+					@endforeach
+
+			@endif
 
 
 
@@ -134,7 +142,6 @@
 	</section>
 
 <script type="text/javascript">
-
 
 document.getElementById("addBtn").onclick = function(){
 	document.getElementById("addBtn").disabled = true;

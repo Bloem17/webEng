@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Models\Rechnung;
 use \App\Models\Reise;
+use Illuminate\Support\Collection;
 use View;
 
 class RechnungController extends Controller
@@ -39,20 +40,54 @@ class RechnungController extends Controller
 
     }
 
-    public function abrechnung(Reise $reise){
+
+
+        public function abrechnung(Reise $reise){
+
 
 
         $gesamtbetrag = 0;
 
+        $teilnehmer = $reise->teilnehmer()->count();
+        $presi = $reise->preis;
+
+        $betrag = $presi * $teilnehmer;
+        $hr = array();
+        $rv = array();
+        $ck = array();
+        $essen = array();
+        $ek = array();
+
+
         foreach ($reise->rechnung as $rechnung){
+            if ($rechnung->rechnungstyp =='hotelrechnung') {
+            $hr[]=$rechnung;
+            } elseif ($rechnung->rechnungstyp =='reiseversicherung') {
+                $rv[]=$rechnung;
+            } elseif ($rechnung->rechnungstyp =='carkosten') {
+                $ck[]=$rechnung;
+            } elseif ($rechnung->rechnungstyp =='essen') {
+                $essen[]=$rechnung;
+            } elseif ($rechnung->rechnungstyp =='eventkosten') {
+                $ek[]=$rechnung;
+            }
+        
 
-            $gesamtbetrag += $rechnung->betrag;
+        $gesamtbetrag += $rechnung->betrag;
 
-        }
+      }
 
-        return $gesamtbetrag;
+        //echo "Teilnehmer: " . $teilnehmer . " * " . $presi . "=" . $betrag; 
 
+       $pdf = \PDF::loadView('static.pdf', compact('gesamtbetrag', 'reise', 'betrag', 'teilnehmer', 'hr', 'rv', 'ck', 'essen','ek'));
+       return $pdf->stream();
+        
     }
+    
+
+
+
+    
 
 
 }

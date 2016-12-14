@@ -58,8 +58,10 @@
  			<select class="custom-select" id='tage_select' name="selectRtyp">
 			  	<option selected>Bestimmen Sie den Rechnungstyp</option>
 			  	<option value="hotelrechnung">Hotelrechnung</option>
-				<option value="ov">Oeffentliche Verkehrsmittel</option>
-				<option value="test">test</option>
+				<option value="reiseversicherung">Reiseversicherung</option>
+				<option value="carkosten">Carkosten</option>
+				<option value="essen">Essen</option>
+				<option value="eventkosten">Eventkosten</option>
 			</select>
 		</div>
 	</div>

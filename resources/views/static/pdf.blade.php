@@ -1,41 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Schlussabrechnung</title>
 	<style>
 	
-table {
-   margin: 100%;
-}
+		@page{margin: 0px;}
 
-        
- 
-  	</style>
+		body .main {margin: 30px;}
+
+		.main table { 
+			margin-left: auto; 
+			margin-right:auto;
+			border-spacing: 0;
+			padding: 0;
+			margin-bottom: 20px;
+			}
+		.main table tr td { background: #FFFFFF; width:370px;}	
+		.main table tr:nth-child(odd) td{ background: #F5F5F5;}
+		.main table tr td:nth-child(even){width: 300px; text-align: right;}
+		.main table thead tr td{font-weight: bold; border-bottom:1pt solid black;}
+		.saldo td {border-top:1pt solid black; font-weight: bold;}
+
+		.titel table {
+				border-spacing: 0;
+				padding: 0;
+				width: 100%;
+				margin-bottom:20px;
+		}
+
+
+
+		.titel table tr td {background: #F5F5F5; padding-left: 30px;}
+		
+		
+
+		
+		
+	</style>
+<div class="main">
 <body>
 	<h1>Reise: {{$reise->titel}} {{$reise->id}}</h1>
+</div>
+<div class="titel">
+<table>
+	<tr>
+		<td><h2>Einnahmen</h2></td>
+	</tr>
+</table>
+</div>
 
-<h3>Einnahmen</h3>
+<div class ="main">
 <table>
 
 <tbody>
 		<tr>
 			<td>Anzahl Teilnehmer:</td>
-			<td> {{$teilnehmer}}</td>
+			<td> {{$teilnehmer}} Personen</td>
 		</tr>
 		<tr>
 			<td>Preis pro Teilnehmer:</td>
 			 <td>{{$reise->preis}}.-</td>
 		</tr>
-		<tr>
-			<td>Gesamtbetrag:</td>
-			 <td>{{$betrag}}.-</td>
-		</tr>
 	</tbody>
 </table>
+</div>
 
-<h3>Ausgaben</h3>
+<div class="titel">
+<table>
+	<tr>
+		<td class="titel"><h2>Ausgaben</h2></td>
+	</tr>
+</table>
+</div>
 @if (!empty($hr))
+<div class="main">
 <h4>Hotelrechnungen</h4>
 <table>
 
@@ -154,9 +192,24 @@ table {
     
 </table>
 @endif
+<h4>Total</h4>
+<table>
+	<tbody>
+	<tr>
+		<td>Gesamteinahmen:</td>
+		<td>{{$betrag}}.-</td>
+	</tr>
+	<tr>
+		<td><label>Gesamtausgaben:</label></td>
+		<td>{{$gesamtbetrag}}.-</td>
+	</tr>
+	<tr class="saldo">
+		<td >Saldo</td>
+		<td>{{$betrag-$gesamtbetrag}}.-</td>
+	</tr>
 
-<label>Gesamtausgaben: {{$gesamtbetrag}}.-</label>
-<br>
-<label>Saldo: {{$betrag-$gesamtbetrag}}.-</label>
+	</tbody>
+</table>
+</div>
 </body>
 </html>

@@ -52,6 +52,7 @@ class RechnungController extends Controller
         $presi = $reise->preis;
 
         $betrag = $presi * $teilnehmer;
+
         $hr = array();
         $rv = array();
         $ck = array();
@@ -77,7 +78,7 @@ class RechnungController extends Controller
 
       }
 
-        //echo "Teilnehmer: " . $teilnehmer . " * " . $presi . "=" . $betrag; 
+
 
        $pdf = \PDF::loadView('static.pdf', compact('gesamtbetrag', 'reise', 'betrag', 'teilnehmer', 'hr', 'rv', 'ck', 'essen','ek'));
        return $pdf->stream();

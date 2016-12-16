@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateEventRequest;
 use \App\Models\Reise;
 use \App\Models\Rechnung;
 use View;
 use Auth;
+use Illuminate\Pagination\Paginator;
 
 
 class EventController extends Controller {
@@ -35,7 +37,7 @@ class EventController extends Controller {
         }
     }
 
-    public function store(Request $request){
+    public function store(CreateEventRequest $request){
 
     	$reise = new Reise;
 
@@ -63,7 +65,12 @@ class EventController extends Controller {
         $reise->kurzbeschrieb = $kurzbeschrieb;
 		$reise->preis = $request->preis;
 		$reise->status = true;
-        $reise->datum = $request->datum;
+        $datum = $request->datum;
+
+        $date = new \DateTime($datum);
+        $newDate = date_format($date, 'd-m-Y');
+
+        $reise->datum = $newDate;
 
 		$reise->save();
 		return redirect()->to('/events');
@@ -79,8 +86,14 @@ class EventController extends Controller {
 
     public function show (Reise $reise){
 
+        
+        $rechnungen = $reise->rechnung()->paginate(10, ['*'], 'rechnungen');
+        $teilnehmer = $reise->teilnehmer()->paginate(10, ['*'], 'teilnehmer');
+        
 
-        return View::make('event.show')->with('event', $reise);
+        return View::make('event.show')
+        ->with('event', $reise)
+        ->with('rechnungen', $rechnungen)->with('teilnehmer', $teilnehmer);
 
     }
 

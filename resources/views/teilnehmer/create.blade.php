@@ -29,7 +29,7 @@
 	</div>
 
 
-	<form method='post' action='teilnehmer/store' >
+	<form method='post' action='teilnehmer/store' id="req">
 
 		<!-- 
 			{{csrf_field()}} generate a token field which is send with the HTML request to validate it
@@ -72,11 +72,20 @@
 	    </div>
 
 	    <div class="form-group">
-			<button type='submit' class='btn btn-primary'>Teilnehmer hinzufügen</button>
+			<button type='submit' id="addBtn" class='btn btn-primary'>Teilnehmer hinzufügen</button>
 		</div>
 
 	</form>
 </section>
 
 </body>
+
+<script type="text/javascript">
+
+document.getElementById("addBtn").onclick = function(){
+	document.getElementById("addBtn").disabled = true;
+	document.getElementById("req").submit();
+	
+}
+</script>
 </html>

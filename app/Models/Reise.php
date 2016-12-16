@@ -8,6 +8,7 @@ class Reise extends Model
 {
     //
     protected $table = 'event';
+    
 
     
 

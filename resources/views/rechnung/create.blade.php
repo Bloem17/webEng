@@ -28,9 +28,10 @@
 	    <label class="col-sm-1">{{$event->id}}</label>
 	 	<label class="col-sm-1">Titel:</label>
 		<label class="col-sm-3">{{$event->titel}}</label>
+		
 	</div>
 
-<form method='post' action='rechnung/store' >
+<form method='post' action='rechnung/store' id="req">
 
 	<!-- 
 		{{csrf_field()}} generate a token field which is send with the HTML request to validate it
@@ -67,7 +68,7 @@
 	</div>
 
 	<div class="form-group">
-		<button type='submit' class='btn btn-primary'>Add Rechnung</button>
+		<button type='submit' id="addBtn" class='btn btn-primary'>Add Rechnung</button>
 	</div>
 
 </form>
@@ -77,6 +78,14 @@
 </section>
 
 <script type="text/javascript">
+
+
+document.getElementById("addBtn").onclick = function(){
+	document.getElementById("addBtn").disabled = true;
+	document.getElementById("req").submit();
+	
+}
+
  
 
 

@@ -28,7 +28,7 @@ class CreateEventTable extends Migration
             $table->string('titel');
             $table->integer('dauer');
             $table->boolean('status');
-            $table->text('datum');
+            $table->string('datum');
             $table->timestamps();
             
         });

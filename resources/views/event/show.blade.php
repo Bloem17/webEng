@@ -138,7 +138,7 @@
 			    </tr>
 			</thead>
 
-			@foreach ($event->rechnung as $rechnung)
+			@foreach ($rechnungen as $rechnung)
 			<tbody>
 					<tr>
 						<td>{{ $rechnung->id }}</td>
@@ -150,6 +150,9 @@
 				</tbody>
 			@endforeach
 		</table>
+		<section class ="container">
+    		{{$rechnungen->appends(['teilnehmer' => $teilnehmer->currentPage()])->links()}}    
+		</section>
 	</div>
 
 	<div class="form-group row">
@@ -170,21 +173,24 @@
 			    </tr>
 			</thead>
 
-			@foreach ($event->teilnehmer as $teilnehmer)
+			@foreach ($teilnehmer as $kunde)
 			<tbody>
 					<tr>
-						<td>{{ $teilnehmer->id }}</td>
-						<td>{{ $teilnehmer->vorname }}</td>
-						<td>{{ $teilnehmer->nachname }}</td>
-						<td>{{ $teilnehmer->strasse }}</td>
-						<td>{{ $teilnehmer->strNr }}</td>
-						<td>{{ $teilnehmer->plz }}</td>
-						<td>{{ $teilnehmer->ort }}</td>
-						<td>{{ $teilnehmer->reise_id }}</td>
+						<td>{{ $kunde->id }}</td>
+						<td>{{ $kunde->vorname }}</td>
+						<td>{{ $kunde->nachname }}</td>
+						<td>{{ $kunde->strasse }}</td>
+						<td>{{ $kunde->strNr }}</td>
+						<td>{{ $kunde->plz }}</td>
+						<td>{{ $kunde->ort }}</td>
+						<td>{{ $kunde->reise_id }}</td>
 					</tr>
 				</tbody>
 			@endforeach
 		</table>
+		<section class ="container">
+			{{$teilnehmer->appends(['rechnungen' => $rechnungen->currentPage()])->links()}}
+		</section>
 	</div>
 
 </section>

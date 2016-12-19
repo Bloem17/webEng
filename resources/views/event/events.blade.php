@@ -3,7 +3,7 @@
 <head>
 	<title></title>
 </head>
-<body onload="loadTest()">
+<body >
 <header>
 	 @include ('static.nav')
 </header>
@@ -75,14 +75,7 @@
   var selectedId = "";
   var bla = "";
 
-  function loadTest(){
-  	swal({
-					title: "Bitte wählen sie einen Event aus!",
-					text: "",
-					type: "error",
-					confirmButtonText: "Ok"
-				});
-  }
+
 
   function pick(id, element){
 

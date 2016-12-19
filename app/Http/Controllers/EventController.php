@@ -141,6 +141,8 @@ class EventController extends Controller {
 
         
         $reise->delete();
+        $reise->rechnung()->delete();
+        $reise->teilnehmer()->delete();
 
         // redirect
         Session::flash('message', 'Successfully deleted the Event!');

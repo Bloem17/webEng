@@ -33,6 +33,7 @@ Route::get('event/{reise}/rechnung' , 'RechnungController@create')->name('rechnu
 Route::post('event/{reise}/rechnung/store', 'RechnungController@store');
 
 Route::get('event/{reise}/rechnung/schlussrechnung', 'RechnungController@abrechnung')->name('abrechnung');
+Route::get('event/{reise}/rechnung/schlussrechnung', 'RechnungController@abrechnung')->name('abrechnung');
 
 Route::get('rechnung/{rechnung}', 'RechnungController@show')->name('anzeigenRech');
 

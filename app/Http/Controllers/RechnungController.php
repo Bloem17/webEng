@@ -34,10 +34,29 @@ class RechnungController extends Controller
     	$reise->rechnung()->save($rechnung);
 
     	return back();
-        
+    }
 
+    public function show(Rechnung $rechnung){
 
+        $reise = Reise::find($rechnung->reise_id);
 
+        return View::make('rechnung.show')
+        ->with('rechnung', $rechnung)
+        ->with('titel', $reise->titel);
+
+    }
+
+    public function edit(Request $request, Rechnung $rechnung){
+
+        $reise = Reise::find($rechnung->reise_id);
+
+        $rechnung->rechnungsNr = $request->rechnungsNr;
+        $rechnung->betrag = $request->betrag;
+        $rechnung->rechnungstyp = $request->selectRtyp;
+
+        $reise->rechnung()->save($rechnung);
+
+        return back();
     }
 
 

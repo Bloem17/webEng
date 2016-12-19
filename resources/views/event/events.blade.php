@@ -3,7 +3,7 @@
 <head>
 	<title></title>
 </head>
-<body>
+<body onload="loadTest()">
 <header>
 	 @include ('static.nav')
 </header>
@@ -12,12 +12,21 @@
 	<article class="jumbotrons">
 		<h1>All the Events</h1>
 	</center>
-	<section class ="container">
-		<p>
-			<button class='btn btn-primary' id="1" onclick="load(this.id)">Rechnung hinzufuegen</button>
-			<button class='btn btn-primary' id="2" onclick="load(this.id)">Details</button>
-		</p>
-	</section>
+	<br/>
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<button class='btn btn-primary' id="1" onclick="load(this.id)">Schlussabrechnung anzeigen</button>
+		</div>
+		<div class="col-md-6 text-right">
+			<button class='btn btn-warning ' id="2" onclick="load(this.id)">Details</button>
+			<button class='btn btn-danger ' id="3" onclick="load(this.id)">Loeschen</button>
+			
+		</div>
+		</div>
+	</div>
+<br/>
+
 	<center>
 
 		<table id="table" class="table table-striped table-bordered" >
@@ -38,7 +47,7 @@
 
 		@foreach ($events->all() as $event)
 		  <tbody >
-		    <tr onclick='test({{ $event->id }}, this)'>
+		    <tr onclick='pick({{ $event->id }}, this)'>
 		      <td>{{ $event->id }}</td>
 		      <td>{{ $event->preis }}</td>
 		      <td>{{ $event->kurzbeschrieb }}</td>
@@ -63,12 +72,19 @@
 
 <script type="text/javascript">
 
-	
-
   var selectedId = "";
   var bla = "";
 
-  function test(id, element){
+  function loadTest(){
+  	swal({
+					title: "Bitte wählen sie einen Event aus!",
+					text: "",
+					type: "error",
+					confirmButtonText: "Ok"
+				});
+  }
+
+  function pick(id, element){
 
     var selected = "";
 
@@ -96,7 +112,9 @@
 
   } 
 
-  function load(btnId){
+function load(btnId){
+
+
 
   	if(selectedId != ""){
 
@@ -110,21 +128,51 @@
 
 			if(bla == 'hovered'){
 
-			    var url = '{{(route("myRoute", ":id"))}}'
+			    var url = '{{(route("anzeigen", ":id"))}}'
 			    url = url.replace(':id', selectedId);
 			    window.location.href = url;
 	      
       		}
-	    } 
+	    }
+
+	    else if(btnId == 3){
+
+	    	if(bla == 'hovered'){
+
+			swal({
+				title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false
+			},
+			function(){
+				swal("Deleted!", "Your imaginary file has been deleted.", "success");
+			 	var url = '{{(route("deleteEvent", ":id"))}}'
+			    url = url.replace(':id', selectedId);
+			    window.location.href = url;
+				swal("Deleted!", "Your imaginary file has been deleted.", "success");
+			});
+
+			
+
+			   
+	      
+      		}
+	    }  
+
   	}else{
   		swal({
 			title: "Bitte wählen sie einen Event aus!",
 			text: "",
 			type: "error",
 			confirmButtonText: "Ok"
-	});
+		});
   	}  
-  }
+}
+
 
 </script>
 

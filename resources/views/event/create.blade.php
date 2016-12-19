@@ -121,7 +121,7 @@
 		    </div>
 
 			<div class="form-group">
-				<button id="addBtn" type='submit' class='btn btn-primary'>Add Event</button>
+				<button id="addBtn" type='submit' class='btn btn-success'>Add Event</button>
 			</div>
 
 			@if ($errors->any())

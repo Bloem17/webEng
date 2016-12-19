@@ -8,6 +8,7 @@ use \App\Models\Reise;
 use \App\Models\Rechnung;
 use View;
 use Auth;
+use Session;
 use Illuminate\Pagination\Paginator;
 
 
@@ -32,9 +33,9 @@ class EventController extends Controller {
     public function events(){
         $events = Reise::paginate(10);
 
-        if (Auth::check()){
-            return View::make('event.events')->with('events', $events);
-        }
+        
+        return View::make('event.events')->with('events', $events);
+        
     }
 
     public function store(CreateEventRequest $request){
@@ -68,7 +69,7 @@ class EventController extends Controller {
         $datum = $request->datum;
 
         $date = new \DateTime($datum);
-        $newDate = date_format($date, 'd-m-Y');
+        $newDate = date_format($date, 'd.m.Y');
 
         $reise->datum = $newDate;
 
@@ -95,6 +96,55 @@ class EventController extends Controller {
         ->with('event', $reise)
         ->with('rechnungen', $rechnungen)->with('teilnehmer', $teilnehmer);
 
+    }
+
+    public function edit(CreateEventRequest $request, Reise $reise){
+
+        $reise->titel = $request->titel;
+        $reise->dauer = $request->select;
+        $kurzbeschrieb = '';
+
+        
+        for ($i=1; $i <= 7; $i++ ){
+            $check = 'tag' . $i;
+            if (!empty($request->$check)){
+                $kurzbeschrieb .= $request->$check . " | ";
+            }
+        }
+
+        for ($i=1; $i <= 7; $i++ ){
+            $check = 'tag' . $i;
+            if (!empty($request->$check)){
+
+                $reise->$check = $request->$check;
+
+            }
+        }
+
+        $reise->kurzbeschrieb = $kurzbeschrieb;
+        $reise->preis = $request->preis;
+        $reise->status = true;
+        $datum = $request->datum;
+
+        $date = new \DateTime($datum);
+        $newDate = date_format($date, 'd.m.Y');
+
+        $reise->datum = $newDate;
+
+        $reise->save();
+        return redirect()->to('/events');
+
+    }
+
+
+    public function destroy (Reise $reise){
+
+        
+        $reise->delete();
+
+        // redirect
+        Session::flash('message', 'Successfully deleted the Event!');
+        return redirect()->to('/events');
     }
 
   

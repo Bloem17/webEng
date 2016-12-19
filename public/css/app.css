@@ -29,15 +29,17 @@
 }
 
 .hovered td {
-     background: lightgrey;
-     color: pink;
+	background-color: darkgrey !important;
+	color: white;
+    
  }
  
- tr:hover.selected td,
- tr:hover td {
-   background-color: pink;
-   cursor: pointer;
+ tbody tr:hover.selected td,
+ tbody tr:hover td {
+ 	background-color: darkgrey !important;
+ 
  }
+
 
 
 

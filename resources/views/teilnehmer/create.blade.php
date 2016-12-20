@@ -15,6 +15,12 @@
        
 </header>
 
+@if(Session::has('message'))
+	<p class=''>{{ Session::get('message') }}</p>
+@endif
+
+
+
 <section class="container">
 
 <h1>Teilnehmer erfassen</h1>

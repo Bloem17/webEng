@@ -23,18 +23,31 @@ class TeilnehmerController extends Controller
 
     public function store(Request $request, Reise $reise){
 
-    	$teilnehmer = new Teilnehmer;
+        
+        if($reise->teilnehmer()->count() < 20){
 
-    	$teilnehmer->vorname = $request->vorname;
-    	$teilnehmer->nachname = $request->nachname;
-    	$teilnehmer->strasse = $request->strasse;
-    	$teilnehmer->strNr = $request->strNr;
-    	$teilnehmer->ort = $request->ort;
-    	$teilnehmer->plz = $request->plz;
+            $teilnehmer = new Teilnehmer;
 
-    	$reise->teilnehmer()->save($teilnehmer);
+            $teilnehmer->vorname = $request->vorname;
+            $teilnehmer->nachname = $request->nachname;
+            $teilnehmer->strasse = $request->strasse;
+            $teilnehmer->strNr = $request->strNr;
+            $teilnehmer->ort = $request->ort;
+            $teilnehmer->plz = $request->plz;
 
-    	return back();
+            $reise->teilnehmer()->save($teilnehmer);
+            \Session::flash('message', 'Teilnehmer erfolgreich hinzugefügt'); 
+            return back();
+
+        }else{
+            \Session::flash('message', 'Bereits 20 Teilnehmer erfasst!'); 
+            return back();
+        }
+
+
+        
+
+    	
 
     	
 

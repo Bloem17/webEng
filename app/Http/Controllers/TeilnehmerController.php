@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateTeilnehmerRequest;
 use \App\models\Teilnehmer;
 use \App\models\Reise;
 use View;
@@ -33,7 +34,7 @@ class TeilnehmerController extends Controller
 
     }
 
-    public function store(Request $request, Reise $reise){
+    public function store(CreateTeilnehmerRequest $request, Reise $reise){
 
         
         if($reise->teilnehmer()->count() < 20){
@@ -61,7 +62,7 @@ class TeilnehmerController extends Controller
 
     }
 
-    public function edit(Request $request, Teilnehmer $teilnehmer){
+    public function edit(CreateTeilnehmerRequest $request, Teilnehmer $teilnehmer){
 
         $reise = Reise::find($teilnehmer->reise_id);
 

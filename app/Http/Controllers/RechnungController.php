@@ -49,7 +49,7 @@ class RechnungController extends Controller
 
     }
 
-    public function edit(Request $request, Rechnung $rechnung){
+    public function edit(CreateRechnungRequest $request, Rechnung $rechnung){
 
         $reise = Reise::find($rechnung->reise_id);
 

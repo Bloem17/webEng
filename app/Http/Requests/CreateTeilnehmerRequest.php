@@ -25,11 +25,14 @@ class CreateTeilnehmerRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required',
-            'email' => 'required|email',
-            'passwort' => 'required',
-            'passwort1' => 'required'
-            'passwort' => 'same:passwort1',            
+            'vorname' => 'required|string|regex:/^[a-zA-Z\s]*$/',
+            'nachname' => 'required|string|regex:/^[a-zA-Z\s]*$/',
+            'strasse' => 'required|string|regex:/^[a-zA-Z\s]*$/',
+            'strNr' => 'required|integer',
+            'ort' => 'required|string|regex:/^[a-zA-Z\s]*$/',
+            'plz' => 'required|integer'
+
+                   
 
         ];
     }

@@ -73,7 +73,7 @@
 	</div>
 
 	<div class="form-group">
-		<button style="display:none;" type='submit' id="addBtn" class='btn btn-primary'>Add Rechnung</button>
+		<button style="display:none;" type='submit' id="addBtn" class='btn btn-success'>Rechnung hinzufuegen</button>
 	</div>
 
 </form>

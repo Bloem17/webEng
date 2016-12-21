@@ -87,7 +87,7 @@
 $( document ).ready(function() {
    setTimeout(function() {
 	$('#msg').fadeOut();
-	}, 10000 );
+	}, 3000 );
 });
 
 function setSelect(){

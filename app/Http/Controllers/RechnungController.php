@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Models\Rechnung;
-use \App\Models\Reise;
+use App\Models\Rechnung;
+use App\Models\Reise;
 use Illuminate\Support\Collection;
 use View;
 use App\Http\Requests\CreateRechnungRequest;

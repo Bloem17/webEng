@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateTeilnehmerRequest;
-use App\models\Teilnehmer;
-use App\models\Reise;
+use App\Models\Teilnehmer;
+use App\Models\Reise;
 use View;
 
 class TeilnehmerController extends Controller

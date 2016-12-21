@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateEventRequest;
-use \App\Models\Reise;
-use \App\Models\Rechnung;
+use App\Models\Reise;
+use App\Models\Rechnung;
 use View;
 use Auth;
 use Session;

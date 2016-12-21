@@ -4,15 +4,10 @@
 	<title>Schlussabrechnung</title>
 	<style>
 	
-		@page{margin: 0px;}
 
 		body .main {margin: 30px;}
 
 		.main table { 
-			margin-left: 0; 
-			margin-right:0;
-			border-spacing: 0;
-			padding: 0;
 			margin-bottom: 20px;
 			}
 		.main table tr td { background: #FFFFFF; width:370px;}	
@@ -22,7 +17,7 @@
 		.saldo td {border-top:1pt solid black; font-weight: bold;}
 
 		.titel table {
-				border-spacing: 0;
+				
 				padding: 0;
 				width: 100%;
 				margin-bottom:20px;

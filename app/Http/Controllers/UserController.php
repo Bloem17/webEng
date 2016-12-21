@@ -57,7 +57,7 @@ class UserController extends Controller
                 $rules = array(
                     'name' => 'required',
                     'email' => 'required|email',
-                    'passwort' => 'required',
+                    'passwort' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
                     'passwort1' => 'required',
                     'passwort' => 'same:passwort1',   
                 );
@@ -110,16 +110,16 @@ class UserController extends Controller
 
         if(\Auth::user()->isAdmin == "true"){
 
-             if($user->isAdmin  == "true"){
+             
                 \Session::flash('message', "Admin benutzer koennen nicht geloescht werden"); 
                 \Session::flash('css', 'error');
                 return back();
-            }else{
+            
                 $user->delete();
                 \Session::flash('message', "Benutzer wurde erfolgreich geloescht"); 
                 \Session::flash('css', 'info');
                 return back();
-            }
+            
         }else{
 
             return redirect ('/');

@@ -25,8 +25,8 @@ class CreateRechnungRequest extends FormRequest
     {
         return [
             //
-            'rechnungsNr' => 'required',
-            'betrag' => 'required|numeric',
+            'rechnungsNr' => 'required|alpha_num',
+            'betrag' => 'required|numeric|min:0',
             'selectRtyp' => 'required'
 
         ];

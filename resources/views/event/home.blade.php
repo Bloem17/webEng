@@ -27,7 +27,15 @@ and open the template in the editor.
             <p>
               Diese Webpage wurde entwickelt um die Reiseverwaltung zu vereinfachen
             </p>
-
+            </article>
+            </center>
+            </section>
+            <div class="form-group row">
+              <img src="http://writm.com/wp-content/uploads/2016/08/travel-022.jpg" alt="W3Schools.com" style="height: 500px; width: 100%">
+            </div>
+        <section>
+          <center>
+            <article>
             <div class="form-group row">
               <label class = "col-sm-4" ></label>
               <div class = "col-sm-2">

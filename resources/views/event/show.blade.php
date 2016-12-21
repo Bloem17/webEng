@@ -34,7 +34,7 @@
 
 		<h1><lable class="col-sm-3">Reise anzeigen</lable>
 		<button class='btn btn-primary' id="changeBtn" onclick="bearbeiten()" type="button">Bearbeiten</button>
-		<button style="display:none;" class='btn btn-success' id="saveBtn" type="submit">speichern</button>
+		<button style="display:none;" class='btn btn-success' id="saveBtn" type="submit">Speichern</button>
 		</h1>
 
 	</div>

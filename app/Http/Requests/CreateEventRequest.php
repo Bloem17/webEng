@@ -29,7 +29,7 @@ class CreateEventRequest extends FormRequest
             //
             'titel' => 'required',
             'select' => 'required|integer',
-            'preis' => 'required|numeric',
+            'preis' => 'required|numeric|min:0',
             'datum' => 'required|date|after:'.$test
 
 

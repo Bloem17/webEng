@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Reisen</title>
-	<link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
-	<script src="js/sweetalert.min.js"></script>
+	
+	
 
 </head>
 <body >
@@ -80,7 +80,7 @@
 	</center>
 
 </section>
-
+<script src="js/sweetalert.min.js"></script>
 </body>
 
 
@@ -89,7 +89,7 @@
 $( document ).ready(function() {
    setTimeout(function() {
 	$('#msg').fadeOut();
-	}, 10000 );
+	}, 3000 );
 });
 
   var selectedId = "";

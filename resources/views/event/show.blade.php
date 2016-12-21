@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-<link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
-	<script src="js/sweetalert.min.js"></script>
+	<title></title>	
 
 </head>
 <body onload='getValue({{$event->dauer}})'>
@@ -172,7 +170,7 @@
 
 			@foreach ($rechnungen as $rechnung)
 			<tbody>
-					<tr onclick='pick({{ $rechnung->id }}, this)'>
+					<tr id="rech" onclick='pick({{ $rechnung->id }}, this, this.id)'>
 						<td>{{ $rechnung->id }}</td>
 						<td>{{ $rechnung->rechnungsNr }}</td>
 						<td>{{ $rechnung->betrag }}</td>
@@ -221,7 +219,7 @@
 
 			@foreach ($teilnehmer as $kunde)
 			<tbody>
-					<tr onclick='pick({{ $kunde->id }}, this)'>
+					<tr id="teil" onclick='pick({{ $kunde->id }}, this, this.id)'>
 						<td>{{ $kunde->id }}</td>
 						<td>{{ $kunde->vorname }}</td>
 						<td>{{ $kunde->nachname }}</td>
@@ -241,17 +239,22 @@
 
 </section>
 
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
+
+</body>
+
 <script type="text/javascript">
 
 	$( document ).ready(function() {
 	   setTimeout(function() {
 		$('#msg').fadeOut();
-		}, 10000 );
+		}, 3000 );
 	});
 
 
 
-	var selectedId = "";
+	var selectedRechId = "";
+	var selectedTeilId = "";
 	var bla = "";
 	window.csrfToken = '<?php echo csrf_token(); ?>';
 
@@ -301,56 +304,63 @@
 
 		}else if (id == 3){
 
-			if(selectedId != ""){
+			if(selectedRechId != ""){
 
 				var url = '{{(route("anzeigenRech", ":id"))}}'
-				url = url.replace(':id',  window.selectedId);
+				url = url.replace(':id',  window.selectedRechId);
 
 				window.location.href = url;
 			}else{
-	
+				
+				alert("Bite wählen sie eine Rechnung aus");
 
 			}
 
 		}else if (id == 4 ){
 
-			var url = '{{(route("deleteRechnung", ":id"))}}'
-			url = url.replace(':id', selectedId);
+			if(selectedRechId != ""){
 
-		 	var form =
-	            $('<form>', {
-	                'method': 'POST',
-	                'action': url
-	            });
+				var url = '{{(route("deleteRechnung", ":id"))}}'
+				url = url.replace(':id', selectedRechId);
 
-	        var token =
-	            $('<input>', {
-	                'name': '_token',
-	                'type': 'hidden',
-	                'value': window.csrfToken
-	            });
+			 	var form =
+		            $('<form>', {
+		                'method': 'POST',
+		                'action': url
+		            });
 
-	        var hiddenInput =
-	            $('<input>', {
-	                'name': '_method',
-	                'type': 'hidden',
-	                'value': 'DELETE'
-	            });
+		        var token =
+		            $('<input>', {
+		                'name': '_token',
+		                'type': 'hidden',
+		                'value': window.csrfToken
+		            });
 
-	        form.append(token, hiddenInput).appendTo('body');
-	        form.submit();
+		        var hiddenInput =
+		            $('<input>', {
+		                'name': '_method',
+		                'type': 'hidden',
+		                'value': 'DELETE'
+		            });
+
+		        form.append(token, hiddenInput).appendTo('body');
+		        form.submit();
+	        }else{
+	
+				alert("Bite wählen sie eine Rechnung aus");
+			}
 
 		}else if (id == 5){
 
-			if(selectedId != ""){
+			if(selectedTeilId != ""){
 
 				var url = '{{(route("anzeigeTeilnehmer", ":id"))}}'
-				url = url.replace(':id',  window.selectedId);
+				url = url.replace(':id',  window.selectedTeilId);
 
 				window.location.href = url;
 			}else{
 	
-
+				alert("Bitte wählen Sie einen Teilnehmer aus");
 			}
 
 
@@ -358,37 +368,48 @@
 
 		}else if (id == 6 ){
 
-			var url = '{{(route("deleteRechnung", ":id"))}}'
-			url = url.replace(':id', selectedId);
+			if(selectedTeilId != ""){
 
-		 	var form =
-	            $('<form>', {
-	                'method': 'POST',
-	                'action': url
-	            });
+				var url = '{{(route("deleteTeilnehmer", ":id"))}}'
+				url = url.replace(':id', selectedTeilId);
 
-	        var token =
-	            $('<input>', {
-	                'name': '_token',
-	                'type': 'hidden',
-	                'value': window.csrfToken
-	            });
+			 	var form =
+		            $('<form>', {
+		                'method': 'POST',
+		                'action': url
+		            });
 
-	        var hiddenInput =
-	            $('<input>', {
-	                'name': '_method',
-	                'type': 'hidden',
-	                'value': 'DELETE'
-	            });
+		        var token =
+		            $('<input>', {
+		                'name': '_token',
+		                'type': 'hidden',
+		                'value': window.csrfToken
+		            });
+
+		        var hiddenInput =
+		            $('<input>', {
+		                'name': '_method',
+		                'type': 'hidden',
+		                'value': 'DELETE'
+		            });
 
 	        form.append(token, hiddenInput).appendTo('body');
 	        form.submit();
+
+
+			}else{
+				alert("Bitte wählen Sie einen Teilnehmer aus");
+			}
+
+			
 			
 		}
 	}
 
 
-	function pick(id, element){
+	function pick(id, element, origin){
+
+
 
 	    var selected = "";
 
@@ -408,7 +429,6 @@
 	    }
 
 
-
 	    if(element.className == "hovered"){
 	      selected = true;
 	    }else{
@@ -421,8 +441,18 @@
 	    }
 
 	    window.bla = element.className;
-	    window.selectedId = id;
 
+	    if(origin == 'rech'){
+
+	    	window.selectedRechId = id;
+	    	window.selectedTeilId = "";
+
+	    }else{
+
+	    	window.selectedTeilId = id;
+	    	window.selectedRechId = "";
+
+	    }
 
   	} 
 
@@ -435,9 +465,6 @@
 		document.getElementById('changeBtn').style.display = 'none';
 		document.getElementById('preis').disabled = false;
 		document.getElementById('datum').disabled = false;
-
-
-
 		
 	}
 
@@ -467,6 +494,4 @@
 	}
 
 </script>
-
-</body>
 </html>

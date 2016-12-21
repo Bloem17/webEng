@@ -20,7 +20,7 @@
 
 <div class="form-group row">
 	<h1>
-		<lable class="col-sm-6">Benutzer anzeigen</lable>
+		<lable class="col-sm-6">Benutzer anzeigen </lable>
 		<div class="col-md-6 text-right">
 			<button class='btn btn-success' id="1" onclick="load(this.id)" type="button">Hinzufuegen</button>
 			<button class='btn btn-danger' id="2" onclick="load(this.id)" type="button">Loeschen</button>

@@ -17,6 +17,17 @@
 	<p id="msg" class="{{ Session::get('css') }}" >{{ Session::get('message') }}</p>
 @endif
 
+@if ($errors->any())
+
+				<ul class="alert alert-danger">
+
+					@foreach ($errors->all() as $error)
+					<li style="list-style-type: none;">{{$error}}</li>
+					@endforeach
+				</ul>
+
+	@endif
+
 <section class="container">
 
 
@@ -63,7 +74,7 @@
 		<label for="" class="col-sm-2 col-form-label">Rechnungstyp</label>
  		<div class="col-sm-2">
  			<select class="custom-select" id='tage_select' name="selectRtyp">
-			  	<option selected>Bestimmen Sie den Rechnungstyp</option>
+			  	<option selected value="">Bestimmen Sie den Rechnungstyp</option>
 			  	<option value="hotelrechnung">Hotelrechnung</option>
 				<option value="reiseversicherung">Reiseversicherung</option>
 				<option value="carkosten">Carkosten</option>

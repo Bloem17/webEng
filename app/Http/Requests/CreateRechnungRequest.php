@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateEventRequest extends FormRequest
+class CreateRechnungRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,9 @@ class CreateEventRequest extends FormRequest
     {
         return [
             //
-            'titel' => 'required',
-            'select' => 'required|integer',
-            'preis' => 'required|numeric',
-            'datum' => 'required|date'
-
+            'rechnungsNr' => 'required',
+            'betrag' => 'required|numeric',
+            'selectRtyp' => 'required'
 
         ];
     }

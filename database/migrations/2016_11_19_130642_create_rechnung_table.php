@@ -17,7 +17,7 @@ class CreateRechnungTable extends Migration
             
             $table->increments('id');
             $table->string('rechnungsNr');
-            $table->integer('betrag');
+            $table->double('betrag');
             $table->string('rechnungstyp');
             $table->integer('reise_id')->length(10)->unsigned();
             $table->timestamps();

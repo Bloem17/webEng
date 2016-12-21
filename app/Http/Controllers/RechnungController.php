@@ -7,6 +7,7 @@ use \App\Models\Rechnung;
 use \App\Models\Reise;
 use Illuminate\Support\Collection;
 use View;
+use App\Http\Requests\CreateRechnungRequest;
 
 class RechnungController extends Controller
 {
@@ -22,13 +23,13 @@ class RechnungController extends Controller
 
     }
 
-    public function store(Request $request, Reise $reise){
+    public function store(CreateRechnungRequest $request, Reise $reise){
 
 
     	$rechnung = new Rechnung;
 
     	$rechnung->rechnungsNr = $request->rechnungsNr;
-    	$rechnung->betrag = $request->betrag;
+    	$rechnung->betrag = round($request->betrag, 2);
     	$rechnung->rechnungstyp = $request->selectRtyp;
 
     	$reise->rechnung()->save($rechnung);
@@ -40,7 +41,7 @@ class RechnungController extends Controller
 
     public function show(Rechnung $rechnung){
 
-        $reise = Reise::find($rechnung->reise_id);
+        $reise = Reise::find($rechnung->reise_id); 
 
         return View::make('rechnung.show')
         ->with('rechnung', $rechnung)

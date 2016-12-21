@@ -46,7 +46,7 @@ Route::get('event/{reise}/teilnehmer' , 'TeilnehmerController@create')->name('te
 
 Route::post('event/{reise}/teilnehmer/store', 'TeilnehmerController@store');
 
-Route::delete('teilnehmer/{teilnehmer}', 'TeilnehmerController@destroy')->name('deleteRechnung');
+Route::delete('teilnehmer/{teilnehmer}', 'TeilnehmerController@destroy')->name('deleteTeilnehmer');
 
 Route::get('teilnehmer/{teilnehmer}', 'TeilnehmerController@show')->name('anzeigeTeilnehmer');
 

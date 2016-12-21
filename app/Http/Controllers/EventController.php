@@ -68,9 +68,11 @@ class EventController extends Controller {
         }
 
         $reise->kurzbeschrieb = $kurzbeschrieb;
-		$reise->preis = $request->preis;
+		$reise->preis = round($request->preis, 2);
 		$reise->status = true;
         $datum = $request->datum;
+
+        
 
         $date = new \DateTime($datum);
         $newDate = date_format($date, 'd.m.Y');

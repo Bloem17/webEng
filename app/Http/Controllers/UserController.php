@@ -52,14 +52,12 @@ class UserController extends Controller
 
         if(\Auth::user()->isAdmin == "true"){
 
-            // validate
-            // read more on validation at http://laravel.com/docs/validation
                 $rules = array(
                     'name' => 'required',
-                    'email' => 'required|email',
-                    'passwort' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+                    'email' => 'required|email|unique:users,email',
+                    'passwort' => 'required',
                     'passwort1' => 'required',
-                    'passwort' => 'same:passwort1',   
+                    'passwort' => 'same:passwort1|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',   
                 );
 
             $validator = \Validator::make($request->all(), $rules);
@@ -110,12 +108,16 @@ class UserController extends Controller
 
         if(\Auth::user()->isAdmin == "true"){
 
-            
+             if($user->isAdmin  == "true"){
+                \Session::flash('message', "Admin benutzer koennen nicht geloescht werden"); 
+                \Session::flash('css', 'error');
+                return back();
+            }else{
                 $user->delete();
                 \Session::flash('message', "Benutzer wurde erfolgreich geloescht"); 
                 \Session::flash('css', 'info');
                 return back();
-            
+            }
         }else{
 
             return redirect ('/');

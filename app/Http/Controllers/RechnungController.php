@@ -115,7 +115,7 @@ class RechnungController extends Controller
 
 
        $pdf = \PDF::loadView('static.pdf', compact('gesamtbetrag', 'reise', 'betrag', 'teilnehmer', 'hr', 'rv', 'ck', 'essen','ek'));
-       return $pdf->stream();
+       return @$pdf->stream();
         
     }
     

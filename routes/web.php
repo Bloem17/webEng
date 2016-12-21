@@ -21,7 +21,7 @@ Route::post('event/store', 'EventController@store');
 
 Route::get('event/{reise}', 'EventController@show')->name('anzeigen');
 
-Route::get('event/{reise}/delete', ['as' => 'deleteEvent', 'uses' => 'EventController@destroy']);
+Route::delete('event/{reise}', 'EventController@destroy')->name('deleteEvent');
 
 Route::post('event/{reise}/update', 'EventController@edit');
 
@@ -33,17 +33,33 @@ Route::get('event/{reise}/rechnung' , 'RechnungController@create')->name('rechnu
 Route::post('event/{reise}/rechnung/store', 'RechnungController@store');
 
 Route::get('event/{reise}/rechnung/schlussrechnung', 'RechnungController@abrechnung')->name('abrechnung');
-Route::get('event/{reise}/rechnung/schlussrechnung', 'RechnungController@abrechnung')->name('abrechnung');
 
 Route::get('rechnung/{rechnung}', 'RechnungController@show')->name('anzeigenRech');
 
 Route::post('rechnung/{rechnung}/update', 'RechnungController@edit');
+
+Route::delete('rechnung/{rechnung}', 'RechnungController@destroy')->name('deleteRechnung');
 
 
 
 Route::get('event/{reise}/teilnehmer' , 'TeilnehmerController@create')->name('teilnehmerHinzufuegen');
 
 Route::post('event/{reise}/teilnehmer/store', 'TeilnehmerController@store');
+
+Route::delete('teilnehmer/{teilnehmer}', 'TeilnehmerController@destroy')->name('deleteRechnung');
+
+Route::get('teilnehmer/{teilnehmer}', 'TeilnehmerController@show')->name('anzeigeTeilnehmer');
+
+Route::post('teilnehmer/{teilnehmer}/update', 'TeilnehmerController@edit');
+
+
+Route::get('/dashboard', 'UserController@index');
+
+Route::get('user/create', 'UserController@create')->name('createUser');
+
+Route::delete('user/{user}', 'UserController@destroy')->name('deleteUser');
+
+Route::post('user/store', 'UserController@store');
 
 
 

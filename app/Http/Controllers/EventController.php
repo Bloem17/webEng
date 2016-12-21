@@ -24,16 +24,20 @@ class EventController extends Controller {
 
 	public function index(){
 
-        if (Auth::check()){
-            return View::make('event.home');
-        }
+        return View::make('event.home');
 
 	}
 
+    public function create (){
+
+        return View::make('event.create');
+
+    }
+
     public function events(){
+
         $events = Reise::paginate(10);
 
-        
         return View::make('event.events')->with('events', $events);
         
     }
@@ -74,15 +78,13 @@ class EventController extends Controller {
         $reise->datum = $newDate;
 
 		$reise->save();
+        \Session::flash('message', "Reise '$reise->titel' wurde erfolgreich erfasst"); 
+        Session::flash('css', 'success');
 		return redirect()->to('/events');
 
     }
 
-  	public function create (){
 
-		return View::make('event.create');
-
-    }
 
 
     public function show (Reise $reise){
@@ -132,7 +134,10 @@ class EventController extends Controller {
         $reise->datum = $newDate;
 
         $reise->save();
-        return redirect()->to('/events');
+
+        Session::flash('message', "Reise '$reise->titel' wurde erfolgreich angepasst");
+        Session::flash('css', 'success');
+        return back();
 
     }
 
@@ -145,7 +150,8 @@ class EventController extends Controller {
         $reise->teilnehmer()->delete();
 
         // redirect
-        Session::flash('message', 'Successfully deleted the Event!');
+        Session::flash('message', 'Reise wurde erfolgreich gelöscht');
+        Session::flash('css', 'info');
         return redirect()->to('/events');
     }
 

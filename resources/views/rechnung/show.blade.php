@@ -2,8 +2,6 @@
 <html>
 <head>
 	<title></title>
-
-
 </head>
 <body onload='setSelect()'>
 
@@ -12,6 +10,10 @@
 @include ('static.nav')
 
 </header>
+
+@if(Session::has('message'))
+	<p id="msg" class="{{Session::get('css')}}">{{ Session::get('message') }}</p>
+@endif
 
 <section class="container">
       
@@ -81,6 +83,12 @@
 </section>
 
 <script type="text/javascript">
+
+$( document ).ready(function() {
+   setTimeout(function() {
+	$('#msg').fadeOut();
+	}, 10000 );
+});
 
 function setSelect(){
 	var rechnung = {!! json_encode($rechnung->toArray()) !!}

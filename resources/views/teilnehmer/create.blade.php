@@ -4,8 +4,6 @@
 	<title>
 		Teilnehmer hinzfügen
 	</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -16,7 +14,7 @@
 </header>
 
 @if(Session::has('message'))
-	<p class=''>{{ Session::get('message') }}</p>
+	<p class="{{ Session::get('css') }}" >{{ Session::get('message') }}</p>
 @endif
 
 
@@ -78,7 +76,7 @@
 	    </div>
 
 	    <div class="form-group">
-			<button type='submit' id="addBtn" class='btn btn-primary'>Teilnehmer hinzufügen</button>
+			<button type='submit' id="addBtn" class='btn btn-success'>Teilnehmer hinzufügen</button>
 		</div>
 
 	</form>

@@ -2,29 +2,31 @@
 <html>
 <head>
 	<title></title>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
+	<script src="js/sweetalert.min.js"></script>
 
 </head>
 <body onload='getValue({{$event->dauer}})'>
 
 <header>
-
-    @include ('static.nav')
-       
+	 @include ('static.nav')
 </header>
 
+@if(Session::has('message'))
+	<p id="msg" class="{{Session::get('css')}}">{{ Session::get('message') }}</p>
+@endif
 
-<section class="container">
-
-	@if ($errors->any())
+@if ($errors->any())
 
 		<ul class="alert alert-danger">
 
 			@foreach ($errors->all() as $error)
-				<li>{{$error}}</li>
+				<li style="list-style-type: none;">{{$error}}</li>
 			@endforeach
 		</ul>
 	@endif
-</section>
+
+
 
 <section class="container">
 
@@ -32,7 +34,7 @@
 
 	<div class="form-group row">
 
-		<h1><lable class="col-sm-3">Event anzeigen</lable>
+		<h1><lable class="col-sm-3">Reise anzeigen</lable>
 		<button class='btn btn-primary' id="changeBtn" onclick="bearbeiten()" type="button">Bearbeiten</button>
 		<button style="display:none;" class='btn btn-success' id="saveBtn" type="submit">speichern</button>
 		</h1>
@@ -138,7 +140,7 @@
         	<input class="form-control" id="datum" placeholder="Datum" name="datum" value="{{$event->datum}}" disabled>
      	 </div>
     </div>
-
+    </form>
 
 	<div class="form-group row">
 		
@@ -148,6 +150,7 @@
 			</div>
 			<div class="col-md-6 text-right">
 				<button class='btn btn-warning ' id="3" onclick="load(this.id)" type="button">Details</button>
+				<button class='btn btn-danger ' id="4" onclick="load(this.id)" type="button">Loeschen</button>
 			</div>
 		</h1>
 	</div>
@@ -192,7 +195,8 @@
 				<button class='btn btn-primary' id="2" onclick="load( {{$event->id}}, this.id)" type="button">Teilnehmer hinzufuegen</button>
 			</div>
 			<div class="col-md-6 text-right">
-				<button class='btn btn-warning ' id="3" onclick="load(this.id)" type="button">Details</button>
+				<button class='btn btn-warning ' id="5" onclick="load(this.id)" type="button">Details</button>
+				<button class='btn btn-danger ' id="6" onclick="load(this.id)" type="button">Loeschen</button>
 			</div>
 		</h1>
 	</div>
@@ -239,10 +243,17 @@
 
 <script type="text/javascript">
 
+	$( document ).ready(function() {
+	   setTimeout(function() {
+		$('#msg').fadeOut();
+		}, 10000 );
+	});
+
 
 
 	var selectedId = "";
 	var bla = "";
+	window.csrfToken = '<?php echo csrf_token(); ?>';
 
 	function getValue (dauer){
 
@@ -297,10 +308,83 @@
 
 				window.location.href = url;
 			}else{
-				
+	
 
 			}
-		}	
+
+		}else if (id == 4 ){
+
+			var url = '{{(route("deleteRechnung", ":id"))}}'
+			url = url.replace(':id', selectedId);
+
+		 	var form =
+	            $('<form>', {
+	                'method': 'POST',
+	                'action': url
+	            });
+
+	        var token =
+	            $('<input>', {
+	                'name': '_token',
+	                'type': 'hidden',
+	                'value': window.csrfToken
+	            });
+
+	        var hiddenInput =
+	            $('<input>', {
+	                'name': '_method',
+	                'type': 'hidden',
+	                'value': 'DELETE'
+	            });
+
+	        form.append(token, hiddenInput).appendTo('body');
+	        form.submit();
+
+		}else if (id == 5){
+
+			if(selectedId != ""){
+
+				var url = '{{(route("anzeigeTeilnehmer", ":id"))}}'
+				url = url.replace(':id',  window.selectedId);
+
+				window.location.href = url;
+			}else{
+	
+
+			}
+
+
+
+
+		}else if (id == 6 ){
+
+			var url = '{{(route("deleteRechnung", ":id"))}}'
+			url = url.replace(':id', selectedId);
+
+		 	var form =
+	            $('<form>', {
+	                'method': 'POST',
+	                'action': url
+	            });
+
+	        var token =
+	            $('<input>', {
+	                'name': '_token',
+	                'type': 'hidden',
+	                'value': window.csrfToken
+	            });
+
+	        var hiddenInput =
+	            $('<input>', {
+	                'name': '_method',
+	                'type': 'hidden',
+	                'value': 'DELETE'
+	            });
+
+	        form.append(token, hiddenInput).appendTo('body');
+	        form.submit();
+			
+		}
 	}
 
 

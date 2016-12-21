@@ -33,6 +33,8 @@ class RechnungController extends Controller
 
     	$reise->rechnung()->save($rechnung);
 
+        \Session::flash('message', "Rechnung '$rechnung->rechnungsNr' erfolgreich hinzugefügt");
+        \Session::flash('css', 'success'); 
     	return back();
     }
 
@@ -56,7 +58,20 @@ class RechnungController extends Controller
 
         $reise->rechnung()->save($rechnung);
 
+        \Session::flash('message', "Rechnung '$rechnung->rechnungsNr' erfolgreich angepasst");
+        \Session::flash('css', 'success'); 
         return back();
+    }
+
+    public function destroy(Rechnung $rechnung){
+
+        $rechnung->delete();
+
+        // redirect
+        \Session::flash('message', 'Rechnung wurde erfolgreich gelöscht');
+        \Session::flash('css', 'info');
+        return back();
+
     }
 
 

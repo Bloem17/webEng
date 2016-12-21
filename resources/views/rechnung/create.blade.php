@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
 
 </head>
 <body onload="hide()">
@@ -13,7 +13,13 @@
 
 </header>
 
+@if(Session::has('message'))
+	<p id="msg" class="{{ Session::get('css') }}" >{{ Session::get('message') }}</p>
+@endif
+
 <section class="container">
+
+
       
         <article class="jumbotrons">
 
@@ -68,7 +74,7 @@
 	</div>
 
 	<div class="form-group">
-		<button type='submit' id="addBtn" class='btn btn-primary'>Add Rechnung</button>
+		<button type='submit' id="addBtn" class='btn btn-success'>Rechnung hinzufuegen</button>
 	</div>
 
 </form>
@@ -78,6 +84,12 @@
 </section>
 
 <script type="text/javascript">
+
+$( document ).ready(function() {
+   setTimeout(function() {
+	$('#msg').fadeOut();
+	}, 10000 );
+});
 
 
 document.getElementById("addBtn").onclick = function(){

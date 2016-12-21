@@ -7,6 +7,8 @@ and open the template in the editor.
 <html>
     <head>
         <title>Home</title>
+        
+
     </head>
     <body>
 
@@ -20,17 +22,26 @@ and open the template in the editor.
       <center>
         <article class="jumbotrons">
           <header>
-            <h1>Herzlich Willkommen</h1>
+            <h1>Herzlich Willkommen {{Auth::user()->name}}</h1>
           </header>
             <p>
               Diese Webpage wurde entwickelt um die Reiseverwaltung zu vereinfachen
             </p>
-            <p>
-              <form action='/event/create'>
-                <button type='submit' class='btn btn-primary btn-lg'> Event hinzufuegen</button>
-              </form>
-            </p>
-            
+
+            <div class="form-group row">
+              <label class = "col-sm-4" ></label>
+              <div class = "col-sm-2">
+                <form action='/event/create'>
+                  <button type='submit' class='btn btn-success btn-lg'> Reise hinzufuegen</button>
+                </form>
+              </div>
+              <div class = "col-sm-2">
+                <form action='/events'>
+                  <button type='submit' class='btn btn-primary btn-lg'> Reise anzeigen</button>
+                </form>
+              </div>
+            </div>
+
             
         </article>
       </center>

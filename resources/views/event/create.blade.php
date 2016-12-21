@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 </head>
 <body onload="hide()">
 
@@ -12,8 +11,19 @@
        
    </header>
 
+   @if ($errors->any())
+
+				<ul class="alert alert-danger">
+
+					@foreach ($errors->all() as $error)
+					<li style="list-style-type: none;">{{$error}}</li>
+					@endforeach
+				</ul>
+
+	@endif
+	
 	<section class="container">
-		<h1>Event erfassen</h1>
+		<h1>Reise erfassen</h1>
 
 
 		<form method='post' action='/event/store' id="req">
@@ -121,18 +131,10 @@
 		    </div>
 
 			<div class="form-group">
-				<button id="addBtn" type='submit' class='btn btn-success'>Add Event</button>
+				<button id="addBtn" type='submit' class='btn btn-success'>Reise hinzufuegen</button>
 			</div>
 
-			@if ($errors->any())
-
-				<ul class="alert alert-danger">
-
-					@foreach ($errors->all() as $error)
-					<li>{{$error}}</li>
-					@endforeach
-
-			@endif
+			
 
 
 

@@ -63,6 +63,10 @@ Route::post('user/store', 'UserController@store');
 
 
 
+Route::get('/about', 'StaticController@show');
+
+
+
 
 Auth::routes();
 

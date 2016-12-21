@@ -23,12 +23,14 @@ class CreateEventRequest extends FormRequest
      */
     public function rules()
     {
+        $test = date("d.m.Y", strtotime("-1 week"));
+
         return [
             //
             'titel' => 'required',
             'select' => 'required|integer',
             'preis' => 'required|numeric',
-            'datum' => 'required|date'
+            'datum' => 'required|date|after:'.$test
 
 
         ];

@@ -13,17 +13,16 @@
 
    @if ($errors->any())
 
-				<ul class="alert alert-danger">
-
-					@foreach ($errors->all() as $error)
-					<li style="list-style-type: none;">{{$error}}</li>
-					@endforeach
-				</ul>
+		<ul class="alert alert-danger">
+			@foreach ($errors->all() as $error)
+				<li style="list-style-type: none;">{{$error}}</li>
+			@endforeach
+		</ul>
 
 	@endif
 	
 	<section class="container">
-		<h1>Reise erfassen</h1>
+		<h1>Reise erfassen </h1>
 
 
 		<form method='post' action='/event/store' id="req">

@@ -9,8 +9,8 @@
 		body .main {margin: 30px;}
 
 		.main table { 
-			margin-left: auto; 
-			margin-right:auto;
+			margin-left: 0; 
+			margin-right:0;
 			border-spacing: 0;
 			padding: 0;
 			margin-bottom: 20px;

@@ -110,10 +110,6 @@ class UserController extends Controller
 
         if(\Auth::user()->isAdmin == "true"){
 
-             
-                \Session::flash('message', "Admin benutzer koennen nicht geloescht werden"); 
-                \Session::flash('css', 'error');
-                return back();
             
                 $user->delete();
                 \Session::flash('message', "Benutzer wurde erfolgreich geloescht"); 

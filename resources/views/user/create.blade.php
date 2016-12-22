@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Benutzer hinzufuegen</title>
+	<title>Benutzer erfassen</title>
 </head>
 <body>
 

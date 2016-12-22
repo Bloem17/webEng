@@ -9,7 +9,6 @@ use View;
 class StaticController extends Controller
 {
     //
- 
  public function show(){
 
     if(\Auth::guest()){
@@ -24,8 +23,15 @@ class StaticController extends Controller
 
 public function index(){
 
-        return View::make('event.home');
+	if(\Auth::guest()){
+
+        return redirect('/login');
+
+	}else{
+
+		return View::make('event.home');
 
 	}
 
+ }
 }

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>
-		Teilnehmer hinzfügen
+		Teilnehmer erfassen
 	</title>
 </head>
 <body>

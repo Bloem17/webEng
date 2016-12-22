@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Rechnung</title>
 </head>
 <body onload='setSelect()'>
 
@@ -96,6 +96,8 @@
 
 </section>
 
+</body>
+
 <script type="text/javascript">
 
 $( document ).ready(function() {
@@ -143,5 +145,4 @@ function load (id, click_id){
 
 </script>
 
-</body>
 </html>

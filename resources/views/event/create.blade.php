@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Reise erfassen</title>
 </head>
 <body onload="hide()">
 

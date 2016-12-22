@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Passwort zuruecksetzen</title>
 </head>
 <body>
 <header>

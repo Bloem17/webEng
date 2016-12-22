@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>	
+	<title>Reise</title>	
 
 </head>
 <body onload='getValue({{$event->dauer}})'>

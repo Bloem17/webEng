@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Rechnung erfassen</title>
 
 
 </head>
@@ -96,6 +96,8 @@
 
 </section>
 
+</body>
+
 <script type="text/javascript">
 
 $( document ).ready(function() {
@@ -128,5 +130,5 @@ function load (id, click_id){
 
 </script>
 
-</body>
+
 </html>

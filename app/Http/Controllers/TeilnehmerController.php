@@ -16,6 +16,12 @@ class TeilnehmerController extends Controller
         $this->middleware('auth');
     }
 
+    public function create(Reise $reise){
+
+        return View::make('teilnehmer.create')->with('event', $reise);
+
+    }
+
     public function show (Teilnehmer $teilnehmer){
 
         $reise = Reise::find($teilnehmer->reise_id);
@@ -28,11 +34,7 @@ class TeilnehmerController extends Controller
         ;
     }
 
-    public function create(Reise $reise){
-
-    	return View::make('teilnehmer.create')->with('event', $reise);
-
-    }
+  
 
     public function store(CreateTeilnehmerRequest $request, Reise $reise){
 

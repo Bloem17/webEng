@@ -22,4 +22,10 @@ class StaticController extends Controller
     }
  }
 
+public function index(){
+
+        return View::make('event.home');
+
+	}
+
 }

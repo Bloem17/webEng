@@ -17,7 +17,7 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index (){
+    public function show (){
 
         if(\Auth::user()->isAdmin == "true"){
 
@@ -28,9 +28,7 @@ class UserController extends Controller
 
             return redirect('/'); 
 
-        }
-
-        
+        }  
       
     }
 

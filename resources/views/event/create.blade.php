@@ -127,7 +127,7 @@
 		  		<div class="col-sm-2">
 		        	<input class="form-control" id="" placeholder="Datum" name="datum">
 		     	</div>
-		     	<label class="col-sm-1 text-muted">mm.dd.YYYY</label>
+		     	<label class="col-sm-1 text-muted">dd.mm.YYYY</label>
 		    </div>
 
 			<div class="form-group">

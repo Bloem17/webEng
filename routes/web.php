@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'EventController@index');
+Route::get('/', 'StaticController@index');
 
 Route::get('/events', 'EventController@events');
 
@@ -53,7 +53,7 @@ Route::get('teilnehmer/{teilnehmer}', 'TeilnehmerController@show')->name('anzeig
 Route::post('teilnehmer/{teilnehmer}/update', 'TeilnehmerController@edit');
 
 
-Route::get('/dashboard', 'UserController@index');
+Route::get('/dashboard', 'UserController@show');
 
 Route::get('user/create', 'UserController@create')->name('createUser');
 

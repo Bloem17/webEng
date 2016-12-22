@@ -23,15 +23,7 @@ class EventController extends Controller {
 
     //
 
-	public function index(){
-
-        return View::make('event.home');
-
-	}
-
-    public function create (){
-
-        
+    public function create (){        
 
         return View::make('event.create');
 

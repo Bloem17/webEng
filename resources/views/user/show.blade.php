@@ -27,9 +27,6 @@
 		</div>
 	</h1>
 </div>
-
-
-
 		<table id="table" class="table table-striped table-bordered" >
 
 			<thead>
@@ -114,7 +111,19 @@
 
 			if(selectedId != ""){
 
-				var url = '{{(route("deleteUser", ":id"))}}'
+				swal({
+					title: "Sind Sie sicher?",
+					text: "Sie koennen diesen Benutzer nicht wiederherstellen",
+					type: "warning",
+					showCancelButton: true,
+					cancelButtonText: "Abbrechen",
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "Loeschen!",
+					closeOnConfirm: false
+
+				},function (){
+
+				var url = '{{(route("deleteUser", ":id"))}}';
 				url = url.replace(':id', selectedId);
 
 			 	var form =
@@ -137,8 +146,10 @@
 		                'value': 'DELETE'
 		            });
 
-		        form.append(token, hiddenInput).appendTo('body');
-		        form.submit();
+               		form.append(token, hiddenInput).appendTo('body');
+		        	form.submit();
+
+	            });
 
 			}else{
 

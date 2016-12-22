@@ -79,11 +79,7 @@ class RechnungController extends Controller
 
         public function abrechnung(Reise $reise){
 
-
-
         $gesamtbetrag = 0;
-
-        
 
         $teilnehmer = $reise->teilnehmer()->count();
         $preis = $reise->preis;
@@ -95,34 +91,9 @@ class RechnungController extends Controller
 
         }
 
-        
-
-
        $pdf = \PDF::loadView('static.pdf', compact('gesamtbetrag', 'reise', 'betrag', 'teilnehmer'));
        return @$pdf->stream();
 
-        /*
-        $hr = array();
-        $rv = array();
-        $ck = array();
-        $essen = array();
-        $ek = array();
-
-
-        foreach ($reise->rechnung as $rechnung){
-            if ($rechnung->rechnungstyp =='hotelrechnung') {
-            $hr[]=$rechnung;
-            } elseif ($rechnung->rechnungstyp =='reiseversicherung') {
-                $rv[]=$rechnung;
-            } elseif ($rechnung->rechnungstyp =='carkosten') {
-                $ck[]=$rechnung;
-            } elseif ($rechnung->rechnungstyp =='essen') {
-                $essen[]=$rechnung;
-            } elseif ($rechnung->rechnungstyp =='eventkosten') {
-                $ek[]=$rechnung;
-            }
-
-      }*/
         
     }
     

@@ -35,7 +35,8 @@
         <article class="jumbotrons">
 
 <h1>Rechnung erfassen
-<button  class='btn btn-primary' id="1" type="button" onclick="load({{$event->id}},this.id)">Zurueck</button></h1>
+<button  class='btn btn-primary' id="1" type="button" onclick="load({{$event->id}},this.id)">Zurueck</button>
+</h1>
 
 <div class="form-group row">
 	<label class="col-sm-2">Ausgewaehlter Event:</label>

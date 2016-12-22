@@ -77,11 +77,11 @@
  		<div class="col-sm-2">
  			<select class="custom-select" id='typ_select' name='selectRtyp' disabled>
 			  	<option selected>Bestimmen Sie den Rechnungstyp</option>
-			  	<option value="hotelrechnung">Hotelrechnung</option>
-				<option value="reiseversicherung">Reiseversicherung</option>
-				<option value="carkosten">Carkosten</option>
-				<option value="essen">Essen</option>
-				<option value="eventkosten">Eventkosten</option>
+			  	<option value="Hotelrechnung">Hotelrechnung</option>
+				<option value="Reiseversicherung">Reiseversicherung</option>
+				<option value="Carkosten">Carkosten</option>
+				<option value="Essen">Essen</option>
+				<option value="Eventkosten">Eventkosten</option>
 			</select>
 		</div>
 	</div>

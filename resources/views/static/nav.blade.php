@@ -50,7 +50,11 @@
       	@endif
 	</nav>
 
-
+<noscript>
+	<center>
+		<h1>Bitte schalten Sie JavaScript in Ihrem Browser ein!</h1>
+	</center>
+</noscript>
 
 </body>
 </html>

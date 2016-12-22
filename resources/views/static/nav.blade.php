@@ -52,7 +52,7 @@
 
 <noscript>
 	<center>
-		<h1>Bitte schalten Sie JavaScript in Ihrem Browser ein!</h1>
+		<h1>Bitte schalten Sie JavaScript in Ihrem Browser ein um die volle Funktionalität der Website ausnützen zu können!</h1>
 	</center>
 </noscript>
 

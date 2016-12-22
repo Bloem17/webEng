@@ -118,7 +118,7 @@ $( document ).ready(function() {
 
   	var notFound = {!! json_encode($events->toArray()) !!};
 
-  	var searchString = document.getElementById('search').value;
+  	var searchString = document.getElementById('search').value.toLowerCase().trim();
 
   	var result = [];
 
@@ -145,7 +145,9 @@ $( document ).ready(function() {
 
   		}else if (option == 'titel'){
 
-	  		if( searchString == data[i].titel){
+  			var searchStr = data[i].titel.toString().toLowerCase();
+
+	  		if(  searchStr.includes(searchString)){
 	  			subData.push(data[i]);
 	  			document.getElementById('pagination').style.visibility = 'hidden';
 	  			window.check = true;
@@ -202,15 +204,9 @@ $( document ).ready(function() {
 	   	table.appendChild(tr);
 
 	}
-
-
   }
 
-
   function pick(element){
-
-
-  	
 
     var selected = "";
 

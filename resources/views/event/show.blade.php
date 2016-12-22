@@ -35,6 +35,7 @@
 		<h1><lable class="col-sm-3">Reise anzeigen</lable>
 		<button class='btn btn-primary' id="changeBtn" onclick="bearbeiten()" type="button">Bearbeiten</button>
 		<button style="display:none;" class='btn btn-success' id="saveBtn" type="submit">Speichern</button>
+		<button  class='btn btn-primary' id="abrech" type="button" onclick="load({{$event->id}},this.id)">Schlussabrechnung anzeigen</button>
 		</h1>
 
 	</div>
@@ -302,6 +303,12 @@
 
 			window.location.href = url;
 
+		}else if ( click_id == 'abrech'){
+
+			var url = '{{(route("abrechnung", ":id"))}}'
+			url = url.replace(':id', id);
+			window.location.href = url;
+
 		}else if (id == 3){
 
 			if(selectedRechId != ""){
@@ -400,8 +407,6 @@
 			}else{
 				alert("Bitte wählen Sie einen Teilnehmer aus");
 			}
-
-			
 			
 		}
 	}
@@ -465,6 +470,7 @@
 		document.getElementById('changeBtn').style.display = 'none';
 		document.getElementById('preis').disabled = false;
 		document.getElementById('datum').disabled = false;
+		document.getElementById('abrech').style.display = 'none' ;
 		
 	}
 

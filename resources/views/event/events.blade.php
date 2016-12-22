@@ -25,12 +25,32 @@
 
 	<br/>
 
+
+	
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-6">
 				<button class='btn btn-primary' id="1" onclick="load(this.id)" type="button">Schlussabrechnung anzeigen</button>
 			</div>
-			<div class="col-md-6 text-right">
+			<div class="col-md-6 ">
+			<div class="col-lg-3">			
+			<div class="form-group">
+			  <select class="form-control" id="searchOption">
+			    <option value="id" >ID</option>
+			    <option value="titel" >Titel</option>
+			  </select>
+			</div>
+			</div>
+			  <div class="col-lg-4">
+			    <div class="input-group">
+			      <span class="input-group-btn">
+			        <button class="btn btn-default" type="button" onclick="searchData()">Go!</button>
+			      </span>
+			      <input id="search" type="text" class="form-control" placeholder="Search for...">
+			    </div><!-- /input-group -->
+			  </div><!-- /.col-lg-6 -->
+	
 				<button class='btn btn-warning ' id="2" onclick="load(this.id)" type="button">Details</button>
 				<button class='btn btn-danger ' id="3" onclick="load(this.id)" type="button">Loeschen</button>
 				
@@ -59,21 +79,11 @@
 
 			@foreach ($events->all() as $event)
 			  <tbody >
-			    <tr onclick='pick({{ $event->id }}, this)'>
-			      <td>{{ $event->id }}</td>
-			      <td>{{ $event->preis }}</td>
-			      <td>{{ $event->kurzbeschrieb }}</td>
-			      <td>{{ $event->titel }}</td>
-			      <td>{{ $event->dauer }}</td>
-			      <td>{{ $event->status }}</td>
-			      <td>{{ $event->datum}}</td>
-			      
-			    </tr>
 			  </tbody>
 			@endforeach
 		</table>
 
-		<section class ="container">
+		<section id="pagination" class ="container">
 			{{ $events->render() }}
 		</section>
 
@@ -90,15 +100,117 @@ $( document ).ready(function() {
    setTimeout(function() {
 	$('#msg').fadeOut();
 	}, 3000 );
-});
 
+   setContent({!! json_encode($events->toArray()) !!});
+
+});
+  	
+  var check = false;
   var selectedId = "";
   var bla = "";
   window.csrfToken = '<?php echo csrf_token(); ?>';
 
+  function searchData(){
+
+  	window.check = false;
+
+  	var data = {!! json_encode($eventsAll->toArray()) !!};
+
+  	var notFound = {!! json_encode($events->toArray()) !!};
+
+  	var searchString = document.getElementById('search').value;
+
+  	var result = [];
+
+  	var subData = [];
+
+  	var option = document.getElementById('searchOption').value;	
 
 
-  function pick(id, element){
+  	for ( var i = 0; i < data.length; i++){
+
+  		if(!searchString){
+  			
+  			subData.push(notFound.data[i]);
+  			window.check = true;
+  			document.getElementById('pagination').style.visibility = 'visible';
+  	
+  		}else if(option == 'id'){
+
+  			if( searchString == data[i].id){
+	  			subData.push(data[i]);
+	  			document.getElementById('pagination').style.visibility = 'hidden';
+	  			window.check = true;
+	  		} 
+
+  		}else if (option == 'titel'){
+
+	  		if( searchString == data[i].titel){
+	  			subData.push(data[i]);
+	  			document.getElementById('pagination').style.visibility = 'hidden';
+	  			window.check = true;
+	  		} 
+  		}
+  	}
+
+
+	if(!window.check){
+		document.getElementById('pagination').style.visibility = 'hidden';
+			swal({
+			title: "Keine Resultate gefunden",
+			text: "",
+			type: "error",
+			confirmButtonText: "Ok"
+		});
+	}
+  		
+  	result = {"data": subData};	
+
+  	var length =  document.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+  	
+  	for ( var i = 0; i < length; i++){
+  	
+  		var table = document.getElementsByTagName('table')[0];  
+
+  		table.deleteRow(-1);		
+
+  	}
+  	
+	setContent(result);  	
+
+  }
+
+
+  function setContent(events){
+
+	var content = ['id', 'preis', 'kurzbeschrieb', 'titel', 'dauer', 'status', 'datum'];
+
+
+	for (var i = 0; i < events.data.length; i++){
+
+		var table = document.getElementsByTagName('tbody')[0];
+		var tr = document.createElement('tr');
+
+		tr.onclick = function (){ pick(this) };
+
+	   	for (var j = 0; j < 7; j++){
+	   		var td = document.createElement('td');	
+	   		td.appendChild(document.createTextNode(events.data[i][content[j]]));
+	   		tr.appendChild(td);
+	   	}
+
+	   	table.appendChild(tr);
+
+	}
+
+
+  }
+
+
+  function pick(element){
+
+
+  	
 
     var selected = "";
 
@@ -122,7 +234,7 @@ $( document ).ready(function() {
     }
 
     window.bla = element.className;
-    window.selectedId = id;
+    window.selectedId = element.getElementsByTagName('td')[0].innerHTML;
  	
 
   } 

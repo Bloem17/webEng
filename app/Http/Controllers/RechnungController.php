@@ -83,11 +83,25 @@ class RechnungController extends Controller
 
         $gesamtbetrag = 0;
 
+        
+
         $teilnehmer = $reise->teilnehmer()->count();
-        $presi = $reise->preis;
+        $preis = $reise->preis;
+        $betrag = $preis * $teilnehmer;
 
-        $betrag = $presi * $teilnehmer;
+        foreach($reise->rechnung as $rechnung){
 
+            $gesamtbetrag += $rechnung->betrag;
+
+        }
+
+        
+
+
+       $pdf = \PDF::loadView('static.pdf', compact('gesamtbetrag', 'reise', 'betrag', 'teilnehmer'));
+       return @$pdf->stream();
+
+        /*
         $hr = array();
         $rv = array();
         $ck = array();
@@ -107,16 +121,8 @@ class RechnungController extends Controller
             } elseif ($rechnung->rechnungstyp =='eventkosten') {
                 $ek[]=$rechnung;
             }
-        
 
-        $gesamtbetrag += $rechnung->betrag;
-
-      }
-
-
-
-       $pdf = \PDF::loadView('static.pdf', compact('gesamtbetrag', 'reise', 'betrag', 'teilnehmer', 'hr', 'rv', 'ck', 'essen','ek'));
-       return @$pdf->stream();
+      }*/
         
     }
     

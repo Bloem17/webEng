@@ -30,7 +30,7 @@ class CreateTeilnehmerRequest extends FormRequest
             'strasse' => 'required|string|regex:/^[a-zA-Z\s]*$/',
             'strNr' => 'required|integer|min:0',
             'ort' => 'required|string|regex:/^[a-zA-Z\s]*$/',
-            'plz' => 'required|integer|min:0|size:4'
+            'plz' => 'required|integer|min:1000|max:999999'
 
                    
 

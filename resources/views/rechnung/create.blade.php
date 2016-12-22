@@ -34,7 +34,8 @@
       
         <article class="jumbotrons">
 
-<h1>Rechnung erfassen</h1>
+<h1>Rechnung erfassen
+<button  class='btn btn-primary' id="1" type="button" onclick="load({{$event->id}},this.id)">Zurueck</button></h1>
 
 <div class="form-group row">
 	<label class="col-sm-2">Ausgewaehlter Event:</label>
@@ -75,11 +76,11 @@
  		<div class="col-sm-2">
  			<select class="custom-select" id='tage_select' name="selectRtyp">
 			  	<option selected value="">Bestimmen Sie den Rechnungstyp</option>
-			  	<option value="hotelrechnung">Hotelrechnung</option>
-				<option value="reiseversicherung">Reiseversicherung</option>
-				<option value="carkosten">Carkosten</option>
-				<option value="essen">Essen</option>
-				<option value="eventkosten">Eventkosten</option>
+			  	<option value="Hotelrechnung">Hotelrechnung</option>
+				<option value="Reiseversicherung">Reiseversicherung</option>
+				<option value="Carkosten">Carkosten</option>
+				<option value="Essen">Essen</option>
+				<option value="Eventkosten">Eventkosten</option>
 			</select>
 		</div>
 	</div>
@@ -107,6 +108,18 @@ document.getElementById("addBtn").onclick = function(){
 	document.getElementById("addBtn").disabled = true;
 	document.getElementById("req").submit();
 	
+}
+
+
+function load (id, click_id){
+	
+	if (click_id == 1){
+
+		var url = '{{(route("anzeigen", ":id"))}}'
+	    url = url.replace(':id', id);
+	    window.location.href = url;
+
+	}
 }
 
  

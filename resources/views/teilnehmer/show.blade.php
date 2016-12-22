@@ -27,6 +27,9 @@
             </button>
         
     </small>
+    <small>
+	<button  class='btn btn-primary' id="1" type="button" onclick="load({{$id}},this.id)">Zurueck</button>
+	</small>
 </h1>
 
 	<div class="form-group row">
@@ -113,6 +116,17 @@ document.getElementById("addBtn").onclick = function(){
 	document.getElementById("addBtn").disabled = true;
 	document.getElementById("req").submit();
 	
+}
+
+function load (id, click_id){
+	
+	if (click_id == 1){
+
+		var url = '{{(route("anzeigen", ":id"))}}'
+	    url = url.replace(':id', id);
+	    window.location.href = url;
+
+	}
 }
 </script>
 </html>

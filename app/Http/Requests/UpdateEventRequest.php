@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTestRequest extends FormRequest
+class UpdateEventRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,15 @@ class CreateTestRequest extends FormRequest
      */
     public function rules()
     {
+        $test = date("d.m.Y", strtotime("-1 week"));
+
         return [
             //
-            'name' => 'required',
-            'email' => 'required|email',
-            'passwort' => 'required',
-            'passwort1' => 'required',
-            'passwort' => 'same:passwort1',            
+            'titel' => 'required|string',
+            'select' => 'required|integer',
+            'preis' => 'required|numeric|min:0',
+            'datum' => 'required|date'
+
 
         ];
     }

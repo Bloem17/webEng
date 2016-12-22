@@ -9,6 +9,11 @@ class Rechnung extends Model
     //
 	protected $table = 'rechnung';
 
+	protected $fillable = ['rechnungsNr',
+						   'betrag',
+						   'rechnungstyp'];
+				
+
 	//Rechnung ist einer Reise (Event) zugewiesen
 	public function reise(){
 

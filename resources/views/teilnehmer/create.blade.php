@@ -31,7 +31,9 @@
 
 <section class="container">
 
-<h1>Teilnehmer erfassen</h1>
+<h1>Teilnehmer erfassen
+<button  class='btn btn-primary' id="1" type="button" onclick="load({{$event->id}},this.id)">Zurueck</button>
+</h1>
 
 	<div class="form-group row">
 		<label class="col-sm-1">ID:</label>
@@ -101,5 +103,17 @@ document.getElementById("addBtn").onclick = function(){
 	document.getElementById("req").submit();
 	
 }
+
+function load (id, click_id){
+	
+	if (click_id == 1){
+
+		var url = '{{(route("anzeigen", ":id"))}}'
+	    url = url.replace(':id', id);
+	    window.location.href = url;
+
+	}
+}
+
 </script>
 </html>

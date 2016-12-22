@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateEventRequest;
+use App\Http\Requests\UpdateEventRequest;
 use App\Models\Reise;
 use App\Models\Rechnung;
 use View;
@@ -39,8 +40,10 @@ class EventController extends Controller {
     public function events(){
 
         $events = Reise::paginate(10);
+        $eventsAll = Reise::all();
 
-        return View::make('event.events')->with('events', $events);
+        return View::make('event.events')->with('events', $events)
+                                        ->with('eventsAll', $eventsAll);
         
     }
 
@@ -104,7 +107,7 @@ class EventController extends Controller {
 
     }
 
-    public function edit(CreateEventRequest $request, Reise $reise){
+    public function edit(UpdateEventRequest $request, Reise $reise){
 
         $reise->titel = $request->titel;
         $reise->dauer = $request->select;

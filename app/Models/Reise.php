@@ -8,6 +8,19 @@ class Reise extends Model
 {
     //
     protected $table = 'event';
+
+    protected $fillable = ['titel',
+						   'dauer',
+						   'kurzbeschrieb',
+						   'tag1',
+						   'tag2',
+						   'tag3',
+						   'tag4',
+						   'tag5',
+						   'tag6',
+						   'tag7',
+						   'preis',
+						   'datum'];
     
 
     

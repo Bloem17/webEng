@@ -57,6 +57,11 @@
 	      <div class="col-sm-5">
 	        <input type="password" class="form-control" id="" placeholder="passwort" name="passwort">
 	      </div>
+	      <ul class="col-sm-4 text-muted">
+	      <li >Minimale Länge: 8 Zeichen</li>
+	      <li>Mindestens ein Grossbuchstaben</li>
+	      <li>Mindestens eine Ziffer</li>
+	      </ul>
 	    </div>
 
 	    <div class="form-group row">

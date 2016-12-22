@@ -17,6 +17,16 @@
 	<p class="{{ Session::get('css') }}" >{{ Session::get('message') }}</p>
 @endif
 
+@if ($errors->any())
+
+				<ul class="alert alert-danger">
+
+					@foreach ($errors->all() as $error)
+					<li style="list-style-type: none;">{{$error}}</li>
+					@endforeach
+				</ul>
+
+	@endif
 
 
 <section class="container">

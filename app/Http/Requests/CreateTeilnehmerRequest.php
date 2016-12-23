@@ -25,11 +25,11 @@ class CreateTeilnehmerRequest extends FormRequest
     {
         return [
             //
-            'vorname' => 'required|string|regex:/^[a-zA-Z\s]*$/',
-            'nachname' => 'required|string|regex:/^[a-zA-Z\s]*$/',
-            'strasse' => 'required|string|regex:/^[a-zA-Z\s]*$/',
+            'vorname' => 'required|string|regex:/^[a-zA-ZäöüÄÖÜ\s]*$/',
+            'nachname' => 'required|string|regex:/^[a-zA-ZäöüÄÖÜ\s]*$/',
+            'strasse' => 'required|string|regex:/^[a-zA-ZäöüÄÖÜ\s]*$/',
             'strNr' => 'required|integer|min:0',
-            'ort' => 'required|string|regex:/^[a-zA-Z\s]*$/',
+            'ort' => 'required|string|regex:/^[a-zA-ZäöüÄÖÜ\s]*$/',
             'plz' => 'required|integer|min:1000|max:999999'
 
                    

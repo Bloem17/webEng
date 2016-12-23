@@ -14,7 +14,7 @@
 </header>
 
 @if(Session::has('message'))
-	<p class="{{ Session::get('css') }}" >{{ Session::get('message') }}</p>
+	<p id="msg" class="{{ Session::get('css') }}" >{{ Session::get('message') }}</p>
 @endif
 
    @if ($errors->any())
@@ -97,6 +97,12 @@
 </body>
 
 <script type="text/javascript">
+
+$( document ).ready(function() {
+   setTimeout(function() {
+	$('#msg').fadeOut();
+	}, 3000 );
+});
 
 document.getElementById("addBtn").onclick = function(){
 	document.getElementById("addBtn").disabled = true;
